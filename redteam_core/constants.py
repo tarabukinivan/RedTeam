@@ -131,7 +131,6 @@ class Constants(BaseModel):
         return point * decay_factor
 
     def is_commit_on_time(self, commit_timestamp: float) -> bool:
-        return True
         """
         Validator do scoring every day at SCORING_HOUR.
         So the commit time should be submitted before the previous day's SCORING_HOUR.
