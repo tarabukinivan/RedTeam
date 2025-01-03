@@ -119,21 +119,22 @@ class Controller:
                 )
 
                 for miner_input in challenges:
-                    miner_output = self._submit_challenge_to_miner(miner_input)
+                    miner_output, error_message = self._submit_challenge_to_miner(miner_input)
                     score = (
                         self._score_challenge(miner_input, miner_output)
                         if miner_output is not None
                         else 0
                     )
-                    logs.append(
-                        {
-                            "miner_input": miner_input,
-                            "miner_output": miner_output,
-                            "score": score,
-                            "miner_docker_image": miner_docker_image,
-                            "uid": uid,
-                        }
-                    )
+                    log = {
+                        "miner_input": miner_input,
+                        "miner_output": miner_output,
+                        "score": score,
+                        "miner_docker_image": miner_docker_image,
+                        "uid": uid,
+                    }
+                    if error_message:
+                        log["error"] = error_message
+                    logs.append(log)
             except Exception as e:
                 bt.logging.error(f"Error while processing miner {uid}: {e}")
                 logs.append(
@@ -235,6 +236,7 @@ class Controller:
             A dictionary representing the miner's output.
         """
 
+        error_message = ""
         miner_input = copy.deepcopy(challenge)
         exclude_miner_input_key = self.challenge_info.get("exclude_miner_input_key", [])
         for key in exclude_miner_input_key:
@@ -247,10 +249,15 @@ class Controller:
                 verify=_ssl_verify,
                 json=miner_input,
             )
-            return response.json()
+            return response.json(), error_message
+        except requests.exceptions.Timeout:
+            error_message = "Timeout occurred while trying to solve challenge."
+            bt.logging.error(error_message)
+            return None, error_message
         except Exception as ex:
-            bt.logging.error(f"Submit challenge to miner failed: {str(ex)}")
-            return None
+            error_message = f"Submit challenge to miner failed: {str(ex)}"
+            bt.logging.error(error_message)
+            return None, error_message
 
     def _check_alive(self, port=10001, is_challenger=True) -> bool:
         """
