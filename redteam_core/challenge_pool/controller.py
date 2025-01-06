@@ -161,12 +161,15 @@ class Controller:
 
         for container in containers:
             try:
-                container_ports = container.attrs['NetworkSettings']['Ports']
+                container_ports = container.attrs["NetworkSettings"]["Ports"]
                 if any([str(port) in p for p in container_ports]):
                     res = container.remove(force=True)
                     bt.logging.info(f"Removed container {container.name}: {res}")
             except Exception as e:
-                bt.logging.error(f"Error while processing container {container.name}: {e}")
+                bt.logging.error(
+                    f"Error while processing container {container.name}: {e}"
+                )
+
     def _build_challenge_image(self):
         """
         Builds the Docker image for the challenge using the provided challenge name.
@@ -223,7 +226,7 @@ class Controller:
                 bt.logging.info(res)
 
         self._clear_container_by_port(constants.CHALLENGE_DOCKER_PORT)
-        
+
     def _submit_challenge_to_miner(self, challenge) -> dict:
         """
         Sends the challenge input to a miner by making an HTTP POST request to a local endpoint.

@@ -465,15 +465,35 @@ zsdoc/data
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
 
-redteam_core.egg-info/
-./.cache/
+# Directories:
+.git
+.github
 
-data/
-logs/
+# Files:
+.gitignore
+.gitkeep
+.gitmodules
 
-*.bak
-compose.override.yml
-compose.override.yaml
-
-
-volumes/**
+**/*.git
+**/*.gitignore
+**/*.gitkeep
+**/*.gitmodules
+**/*.github
+**/*__pycache__
+**/*.pytest_cache
+**/*.benchmarks
+**/*.coverage
+**/*.DS_Store
+**/*.Thumbs.db
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.env
+**/*.venv
+**/*.lock
+**/*.bak
+**/*.log
+**/logs
+**/tmp
+**/data
+**/modules
