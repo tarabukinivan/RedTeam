@@ -326,7 +326,7 @@ class StorageManager:
         # Step 1: Local Cache with retry
         def local_operation():
             challenge_cache = self._get_cache("_challenge_records")
-            cache_key = f"{data["challenge_name"]}---{data["date"]}" # TODO: MAYBE RECONSIDER THIS KEY
+            cache_key = f"{data['challenge_name']}---{data['date']}" # TODO: MAYBE RECONSIDER THIS KEY
             challenge_cache[cache_key] = data
 
         local_success, error = self._retry_operation(local_operation, retry_config["local"], "Local cache update")
@@ -350,12 +350,12 @@ class StorageManager:
 
         # Step 3: HuggingFace Hub with retry
         def decentralized_operation():
-            hf_filepath = f"_challenge_records/{data["challenge_name"]}/{data["date"]}.json"
+            hf_filepath = f"_challenge_records/{data['challenge_name']}/{data['date']}.json"
             self.hf_api.upload_file(
                 path_or_fileobj=json.dumps(data, indent=4).encode("utf-8"),
                 path_in_repo=hf_filepath,
                 repo_id=self.hf_repo_id,
-                commit_message=f"Update challenge record {data["challenge_name"]} for {data["date"]}"
+                commit_message=f"Update challenge record {data['challenge_name']} for {data['date']}"
             )
 
         hf_success, error = self._retry_operation(decentralized_operation, retry_config["decentralized"], "Decentralized storage update")
@@ -365,7 +365,7 @@ class StorageManager:
 
         # Final Logging
         if success:
-            bt.logging.success(f"Challenge records successfully updated across all storages for validator {data["validator_uid"]}")
+            bt.logging.success(f"Challenge records successfully updated across all storages for validator {data['validator_uid']}")
         else:
             bt.logging.error(f"Failed to update challenge records. Errors: {errors}")
 
