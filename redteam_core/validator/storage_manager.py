@@ -407,30 +407,30 @@ class StorageManager:
             bt.logging.error(f"Error updating repo_id to centralized storage: {e}")
             raise
 
-    # def _update_centralized_storage(self, data: dict, url: str):
-    #     """
-    #     Generic method to update data in centralized storage.
+    def _update_centralized_storage(self, data: dict, url: str):
+        """
+        Generic method to update data in centralized storage.
 
-    #     Args:
-    #         data (dict): Data to update
-    #         url (str): URL endpoint to send data to
-    #     """
-    #     try:
-    #         response = requests.post(
-    #             url,
-    #             json=data,
-    #             timeout=20,
-    #         )
-    #         response.raise_for_status()
-    #     except requests.RequestException as e:
-    #         bt.logging.error(f"Centralized storage update {url} failed: {e}")
+        Args:
+            data (dict): Data to update
+            url (str): URL endpoint to send data to
+        """
+        try:
+            response = requests.post(
+                url,
+                json=data,
+                timeout=20,
+            )
+            response.raise_for_status()
+        except requests.RequestException as e:
+            bt.logging.error(f"Centralized storage update {url} failed: {e}")
 
-    # def update_challenge_records(self, data: dict):
-    #     """Updates the challenge records in the centralized storage."""
-    #     self._update_centralized_storage(
-    #         data,
-    #         self.centralized_challenge_records_storage_url,
-    #     )
+    def update_challenge_records(self, data: dict):
+        """Updates the challenge records in the centralized storage."""
+        self._update_centralized_storage(
+            data,
+            self.centralized_challenge_records_storage_url,
+        )
 
     # MARK: Helper Methods
     def hash_cache_key(self, cache_key: str) -> str:

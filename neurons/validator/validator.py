@@ -28,11 +28,13 @@ class Validator(BaseValidator):
         Initializes the Validator by setting up MinerManager instances for all active challenges.
         """
         super().__init__(config)
-        self.active_challenges = challenge_pool.ACTIVE_CHALLENGES
-        self.miner_managers = {
-            challenge: MinerManager(challenge_name=challenge, challenge_incentive_weight=self.active_challenges[challenge]["challenge_incentive_weight"])
-            for challenge in self.active_challenges.keys()
-        }
+
+        self.smooth_transition_challenge()
+        # self.active_challenges = challenge_pool.ACTIVE_CHALLENGES
+        # self.miner_managers = {
+        #     challenge: MinerManager(challenge_name=challenge, challenge_incentive_weight=self.active_challenges[challenge]["challenge_incentive_weight"])
+        #     for challenge in self.active_challenges.keys()
+        # }
 
         # Setup storage manager and publish public hf_repo_id for storage
         self.storage_manager = StorageManager(
@@ -81,6 +83,25 @@ class Validator(BaseValidator):
             self._init_miner_submit_from_cache()
 
         bt.logging.success("[INIT] Validator state initialization completed")
+
+    def smooth_transition_challenge(self):
+        # TODO: Remove this next update
+        """
+        Smooth transition challenge from old to new challenge
+        """
+        all_challenges = challenge_pool.ACTIVE_CHALLENGES
+        if datetime.datetime.now(datetime.timezone.utc) <= datetime.datetime(2025, 1, 15, 14, 0, 0, 0, datetime.timezone.utc):
+            all_challenges.pop("response_quality_adversarial_v2", None)
+            all_challenges.pop("response_quality_ranker_v2", None)
+        else:
+            all_challenges.pop("response_quality_adversarial", None)
+            all_challenges.pop("response_quality_ranker", None)
+
+        self.active_challenges = all_challenges
+        self.miner_managers = {
+            challenge: MinerManager(challenge_name=challenge, challenge_incentive_weight=self.active_challenges[challenge]["challenge_incentive_weight"])
+            for challenge in self.active_challenges.keys()
+        }
 
     def _init_miner_submit_from_cache(self):
         """
@@ -185,6 +206,7 @@ class Validator(BaseValidator):
         Note: This method is called periodically as part of the validator's
         main loop to process new miner submissions and update scores.
         """
+        self.smooth_transition_challenge()
         self.update_miner_commit(self.active_challenges)
         bt.logging.success(f"[FORWARD] Miner submit: {self.miner_submit}")
         revealed_commits = self.get_revealed_commits()
@@ -406,7 +428,8 @@ class Validator(BaseValidator):
                                     miner_input=log.get("miner_input"),
                                     miner_output=log.get("miner_output"),
                                     miner_docker_image=docker_hub_id,
-                                    error=log.get("error")
+                                    error=log.get("error"),
+                                    baseline_score=log.get("baseline_score")
                                 )
                             )
 
@@ -474,6 +497,7 @@ class Validator(BaseValidator):
         """
         # uids = [1]  # Change this to query multiple uids as needed
         uids = self.metagraph.uids
+
         axons = [self.metagraph.axons[i] for i in uids]
         dendrite = bt.dendrite(wallet=self.wallet)
         synapse = Commit()
