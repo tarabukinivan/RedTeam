@@ -462,25 +462,51 @@ class StorageManager:
         - Confirms the repository exists and meets required attributes.
         - Creates a public repository if it does not exist.
         """
-        # Step 1: Ensure token has write permissions
-        permission = self.hf_api.get_token_permission()
-        if permission != "write":
-            raise PermissionError(f"Token does not have sufficient permissions for repository {self.hf_repo_id}. Current permission: {permission}.")
-        bt.logging.info("Token has write permissions.")
-
-        # Step 2: Check accessible namespaces (users/orgs)
+        # Get user info and auth details
         user_info = self.hf_api.whoami()
-        allowed_namespaces = {user_info["name"]} | {org["name"] for org in user_info["orgs"] if org["roleInOrg"] == "write"}
-        repo_namespace, _ = self.hf_repo_id.split("/")
-        if repo_namespace not in allowed_namespaces:
-            raise PermissionError(f"Token does not grant write access to the namespace '{repo_namespace}'. Accessible namespaces: {allowed_namespaces}.")
-        bt.logging.info(f"Namespace '{repo_namespace}' is accessible with write permissions.")
+        auth_info = user_info.get("auth", {}).get("accessToken", {})
+        token_role = auth_info.get("role")
+        repo_namespace, repo_name = self.hf_repo_id.split("/")
 
-        # Step 3: Validate or create the repository
+        # Step 1: Check permissions and accessible namespaces
+        if token_role == "write":
+            allowed_namespaces = {user_info["name"]} | {org["name"] for org in user_info.get("orgs", []) if org.get("roleInOrg") == "write"}
+            if repo_namespace not in allowed_namespaces:
+                raise PermissionError(f"Token does not grant write access to the namespace '{repo_namespace}'. Accessible namespaces: {allowed_namespaces}.")
+        elif token_role == "fineGrained":
+            # For fine-grained tokens, check permissions hierarchically
+            fine_grained = auth_info.get("fineGrained", {})
+            has_write_access = False
+
+            # Check there's a specific permission for this repo
+            for scope in fine_grained.get("scoped", []):
+                entity = scope.get("entity", {})
+                entity_name = entity.get("name", "")
+
+                # Exact repo match has highest priority
+                if entity_name == self.hf_repo_id:
+                    has_write_access = "repo.write" in scope.get("permissions", [])
+                    break
+                # Namespace match (user/org) is checked if no exact match is found
+                elif entity_name == repo_namespace:
+                    has_write_access = "repo.write" in scope.get("permissions", [])
+
+            # Only check global permissions if no scoped permissions were found
+            if not has_write_access:
+                has_write_access = "repo.write" in fine_grained.get("global", [])
+
+            if not has_write_access:
+                raise PermissionError(f"Fine-grained token does not have write permissions for repository '{self.hf_repo_id}'")
+        else:
+            raise PermissionError(f"Token has insufficient permissions. Expected 'write' or 'fineGrained', got '{token_role}'")
+
+        bt.logging.info(f"Token has write permissions for repository '{self.hf_repo_id}'")
+
+        # Step 2: Validate or create the repository
         try:
             repo_info = self.hf_api.repo_info(repo_id=self.hf_repo_id)
-            if repo_info.private:
-                raise ValueError(f"Repository '{self.hf_repo_id}' is private but must be public.")
+            if repo_info.private or repo_info.disabled:
+                raise ValueError(f"Repository '{self.hf_repo_id}' be public and not disabled.")
             bt.logging.info(f"Repository '{self.hf_repo_id}' exists and is public.")
         except requests.exceptions.HTTPError as e:
             if e.response.status_code == 404:  # Repo does not exist

@@ -133,7 +133,7 @@ class MinerManager:
                 date=today,
                 scored_date=prev_scored_date,
                 docker_hub_id=prev_day_record.docker_hub_id,
-                uid=prev_day_record.uid
+                # uid=prev_day_record.uid
             )
             # REMEMBER WE ARE HANDLING BACKWARD COMPATIBILITY USING POINT FIELD SO WAIT FOR THE NEW VERSION TO BE STABLE BEFORE ADDING THIS !!!
             # Do this if we want to explicitly save the decayed points.
