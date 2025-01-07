@@ -82,10 +82,10 @@ class Controller:
             container, health_port=constants.CHALLENGE_DOCKER_PORT,
             is_challenger=True
         )
-
+        num_task = self.challenge_info.get("num_tasks", constants.N_CHALLENGES_PER_EPOCH)
         challenges = [
             self._get_challenge_from_container()
-            for _ in range(constants.N_CHALLENGES_PER_EPOCH)
+            for _ in range(num_task)
         ]
         logs = [] # Logs for miners
         baseline_logs = [] # Logs for baseline
@@ -106,7 +106,7 @@ class Controller:
                         )
                     ]
 
-                miner_start_time = time.time()
+                miner_start_time = time.time() if uid != self.uid_baseline else None
                 miner_container = self.docker_client.containers.run(
                     miner_docker_image,
                     detach=True,
