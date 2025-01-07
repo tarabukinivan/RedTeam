@@ -599,7 +599,7 @@ class Validator(BaseValidator):
 
                 data_to_store.append(data)
         try:
-            self.storage_manager.update_batch(records=data_to_store, async_update=True)
+            self.storage_manager.update_batch(records=data_to_store, process_method="update_record", async_update=True)
         except Exception as e:
             bt.logging.error(f"Failed to queue miner commit data for storage: {e}")
 
