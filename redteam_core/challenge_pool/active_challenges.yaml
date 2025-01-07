@@ -27,6 +27,7 @@ response_quality_adversarial:
     NVIDIA_MEMORY_LIMIT_MB": "20480" # Limit GPU memory usage to 4GB (optional)
   exclude_miner_input_key: # Hidden from miner; only visible to validator for evaluation purposes
     - original_prompt
+  baseline: "bangbang123/response_quality_adversarial@sha256:3a01855fe65d7b91c15ad7a39aeabb9d7565c146fca9932bd4612269452ea5df"
 
 response_quality_ranker:
   name: "Response Quality Ranker"
@@ -40,6 +41,7 @@ response_quality_ranker:
     mem_limit: "10g"
   exclude_miner_input_key: # Hidden from miner; only visible to validator for evaluation purposes
     - groundtruth_ranking
+  baseline: "vietbeu/response_quality_ranker@sha256:5b468ec48eae57907f1ba91de12bfe78f709351b0421e14a3b105dcb00844103"
 
 webui_auto:
   name: "Web User Interface Automation"
@@ -63,3 +65,4 @@ webui_auto:
   environment:
     ENV: "PRODUCTION"
     WUC_WEB_URL: "https://webui_auto:10001/web"
+  baseline: "asadbekk/rest.rt-wu-miner@sha256:b8cd274c0fbb4b30b98274465424025a8b0d070c9cca4e80e0d79f69f49a5c17"
