@@ -137,7 +137,7 @@ class Constants(BaseModel):
         Validator do scoring every day at SCORING_HOUR.
         So the commit time should be submitted before the previous day's SCORING_HOUR.
         """
-        today_closed_time = datetime.datetime.now(datetime.UTC).replace(
+        today_closed_time = datetime.datetime.now(datetime.timezone.utc).replace(
             hour=self.SCORING_HOUR, minute=0, second=0, microsecond=0
         )
         previous_day_closed_time = today_closed_time - datetime.timedelta(days=1)

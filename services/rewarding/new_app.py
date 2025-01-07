@@ -49,7 +49,7 @@ class RewardApp(Validator):
             challenge: MinerManager(challenge_name=challenge, challenge_incentive_weight=self.active_challenges[challenge]["challenge_incentive_weight"])
             for challenge in self.active_challenges.keys()
         }
-        
+
         self.storage_manager = StorageManager(
             cache_dir=self.config.validator.cache_dir,
             hf_repo_id=self.config.validator.hf_repo_id,
@@ -88,45 +88,45 @@ class RewardApp(Validator):
         """
         # Update submissions from all validators
         self.update_validators_miner_commit(self.active_challenges)
-        
+
         # Get unscored submissions and their revealed commits
         unscored_submissions = self.get_unscored_miner_submissions()
         revealed_commits = self.get_revealed_commits(unscored_submissions)
-        
+
         # Always score unscored submissions
         if revealed_commits:
             bt.logging.info(f"[FORWARD] Scoring new submissions")
             # Score submissions efficiently using cache
             all_challenge_logs = self._score_submissions(revealed_commits)
-            
+
             # Update submissions with new logs and store them
             updated_submissions = self._update_miner_scoring_logs(
                 all_challenge_logs=all_challenge_logs,
                 unscored_submissions=unscored_submissions
             )
             self.store_miner_commits(updated_submissions)
-        
+
         # Check if it's time to create daily challenge records
         # Get current time info
-        today = datetime.datetime.now(datetime.UTC)
+        today = datetime.datetime.now(datetime.timezone.utc)
         today_key = today.strftime("%Y-%m-%d")
         current_hour = today.hour
 
         validate_scoring_hour = current_hour >= constants.SCORING_HOUR
         validate_scoring_date = today_key not in self.scoring_dates
-        
+
         if validate_scoring_hour and validate_scoring_date:
             bt.logging.info(f"[FORWARD] Creating challenge records for {today_key}")
             # Update daily submissions
             self._update_daily_submissions()
             # Get scoring logs from cache for daily submissions
             challenge_logs = self._get_scoring_logs_from_daily_submissions()
-            
+
             # Update scores for each challenge
             for challenge_name, logs in challenge_logs.items():
                 if logs:  # Only update if we have logs
                     self.miner_managers[challenge_name].update_scores(logs)
-            
+
             # Store challenge records and update state
             self.scoring_dates.append(today_key)
             self.store_challenge_records_new(dates=today_key)
@@ -136,30 +136,30 @@ class RewardApp(Validator):
     def _score_submissions(self, revealed_commits: dict[str, tuple[list[str], list[int]]]) -> dict[str, list[ScoringLog]]:
         """
         Score submissions efficiently by reusing cached scores for previously seen docker images.
-        
+
         Args:
             revealed_commits: {
                 challenge_name: ([docker_hub_ids], [miner_uids])
             }
-        
+
         Returns:
             dict: {
                 challenge_name: [ScoringLog objects]
             }
         """
         all_challenge_logs: dict[str, list[ScoringLog]] = {}
-        
+
         for challenge_name, (docker_hub_ids, miner_uids) in revealed_commits.items():
             if challenge_name not in self.active_challenges:
                 continue
-                
+
             bt.logging.info(f"[SCORING] Processing challenge: {challenge_name}")
-            
+
             # Separate docker images into cached and new
             docker_score_cache = self.storage_manager._get_cache("_docker_hub_id_score_log")
             cached_logs = []
             new_docker_ids = []
-            
+
             for docker_id in docker_hub_ids:
                 cached_log = docker_score_cache.get(f"{challenge_name}---{docker_id}")
                 if cached_log:
@@ -171,39 +171,39 @@ class RewardApp(Validator):
             new_logs = self._score_new_docker_images(
                 challenge_name, new_docker_ids
             ) if new_docker_ids else []
-            
+
             # Map scores to individual miners
             docker_uid_map = defaultdict(list)
             for docker_hub_id, miner_uid in zip(docker_hub_ids, miner_uids):
                 docker_uid_map[docker_hub_id].append(miner_uid)
-            
+
             challenge_logs = []
-            
+
             # Process all logs (both cached and new)
             for log in chain(cached_logs, new_logs):
                 for miner_uid in docker_uid_map[log["miner_docker_image"]]:
                     miner_log = ScoringLog(**log)
                     miner_log.uid = miner_uid
                     challenge_logs.append(miner_log)
-            
+
             if challenge_logs:
                 all_challenge_logs[challenge_name] = challenge_logs
-        
+
         return all_challenge_logs
-    
+
     def _score_new_docker_images(self, challenge_name: str, docker_hub_ids: list[str]) -> list[dict]:
         """
         Score new docker images and cache their results.
-        
+
         Args:
             challenge_name: Name of the challenge
             docker_hub_ids: List of docker hub IDs to score
-            
+
         Returns:
             list: List of dict objects for new scores
         """
         bt.logging.info(f"[SCORING] Scoring {len(docker_hub_ids)} new docker images for {challenge_name}")
-        
+
         # Create controller and score
         controller = self.active_challenges[challenge_name]["controller"](
             challenge_name=challenge_name,
@@ -211,7 +211,7 @@ class RewardApp(Validator):
             uids=[999] * len(docker_hub_ids),  # Placeholder UID
             challenge_info=self.active_challenges[challenge_name]
         )
-        logs = controller.start_challenge()        
+        logs = controller.start_challenge()
         # Cache new scores
         docker_score_cache = self.storage_manager._get_cache("_docker_hub_id_score_log")
         for log in logs:
@@ -220,9 +220,9 @@ class RewardApp(Validator):
                 docker_score_cache[cache_key].append(log)
             else:
                 docker_score_cache[cache_key] = [log]
-            
+
         return logs
-    
+
     def run(self):
         bt.logging.info("Starting RewardApp loop.")
         while True:
@@ -273,7 +273,7 @@ class RewardApp(Validator):
             try:
                 endpoint = constants.STORAGE_URL + "/fetch-miner-submit"
                 data = {
-                    "validator_ss58_address": validator_hotkey, 
+                    "validator_ss58_address": validator_hotkey,
                     "validator_uid": validator_uid,
                     "challenge_names": list(active_challenges.keys())
                 }
@@ -298,7 +298,7 @@ class RewardApp(Validator):
                 # TODO: Think about what to use as validators_miner_submit keys
                 self.validators_miner_submit[validator_uid] = miner_submit
                 bt.logging.success(f"[FORWARD] Fetched miner submit data from validator {validator_uid}")
-            
+
             except Exception as e:
                 bt.logging.warning(f"[FORWARD] Failed to fetch data for validator {validator_uid}: {str(e)}")
                 continue
@@ -309,32 +309,32 @@ class RewardApp(Validator):
         """
         Get scoring logs from cache for all submissions in daily_miner_submissions.
         Groups logs by challenge name for easier processing.
-        
+
         Returns:
             dict: {
                 challenge_name: [ScoringLog objects]
             }
         """
         challenge_logs = {}
-        
+
         for miner_uid, challenges in self.daily_miner_submissions.items():
             for challenge_name, submission in challenges.items():
                 if challenge_name not in self.active_challenges:
                     continue
-                    
+
                 if not submission.get("encrypted_commit"):
                     continue
-                    
+
                 # Get logs from cache
                 hashed_cache_key = self.storage_manager.hash_cache_key(submission["encrypted_commit"])
                 cache = self.storage_manager._get_cache(challenge_name)
                 cached_submission = cache.get(hashed_cache_key)
-                
+
                 if cached_submission and cached_submission.get("log"):
                     # Initialize challenge logs list if needed
                     if challenge_name not in challenge_logs:
                         challenge_logs[challenge_name] = []
-                        
+
                     # Convert cache logs to ScoringLog objects
                     for log_entry in cached_submission["log"].values():
                         for log_data in log_entry:
@@ -343,7 +343,7 @@ class RewardApp(Validator):
                             if submission.get("commit"):
                                 log_data["miner_docker_image"] = submission["commit"].split("---")[1]
                             challenge_logs[challenge_name].append(ScoringLog(**log_data))
-        
+
         return challenge_logs
 
     def _update_miner_scoring_logs(self, all_challenge_logs: dict[str, list[ScoringLog]], unscored_submissions: dict[int, dict[str, list[dict]]]) -> dict[int, dict[str, list[dict]]]:
@@ -358,23 +358,23 @@ class RewardApp(Validator):
         Returns:
             dict: The same unscored_submissions object with logs added
         """
-        today = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d")
-        
+        today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+
         for challenge_name, logs in all_challenge_logs.items():
             for log in logs:
                 miner_uid = log.uid
                 if miner_uid not in unscored_submissions:
                     continue
-                    
+
                 # Find matching submission for this log
                 for submission in unscored_submissions[miner_uid].get(challenge_name, []):
-                    # TODO: CHECK IF THIS MATCHIG LOGIC CORRECT 
+                    # TODO: CHECK IF THIS MATCHIG LOGIC CORRECT
                     if submission.get("commit") == log.miner_docker_image:
                         # Add today's log directly to the submission
                         if today not in submission["log"]:
                             submission["log"][today] = []
                         submission["log"][today].append(log.model_dump())
-        
+
         return unscored_submissions
 
     def _update_daily_submissions(self):
@@ -384,40 +384,40 @@ class RewardApp(Validator):
         """
         # Reset daily submissions
         new_daily_submissions = {}
-        
+
         # Aggregate submissions from all validators
         for validator_uid, miner_submissions in self.validators_miner_submit.items():
             for miner_uid, challenges in miner_submissions.items():
                 for challenge_name, submission in challenges.items():
                     if challenge_name not in self.active_challenges:
                         continue
-                        
+
                     current_timestamp = submission.get("commit_timestamp", 0)
-                    
+
                     # Initialize if needed
                     if miner_uid not in new_daily_submissions:
                         new_daily_submissions[miner_uid] = {}
-                    
+
                     # Check existing submission
                     existing = new_daily_submissions[miner_uid].get(challenge_name)
-                    
+
                     # TODO: CHECK THIS AGREGATION LOGIC AGAIN
                     # Update if this is the first submission or if it's newer
                     if not existing or current_timestamp > existing.get("commit_timestamp", 0):
                         new_daily_submissions[miner_uid][challenge_name] = submission
-        
+
         self.daily_miner_submissions = new_daily_submissions
 
     # MARK: Storage
     def store_miner_commits(self, miner_submissions: dict[int, dict[str, list[dict]]]):
         """
         Store updated miner submissions to storage.
-        
+
         Args:
             updated_submissions (dict): Output from _update_miner_scoring_logs()
         """
         data_to_store: list[dict] = []
-        
+
         for miner_uid, challenges in miner_submissions.items():
             miner_ss58_address = self.metagraph.hotkeys[miner_uid]
             for challenge_name, submissions in challenges.items():
@@ -438,7 +438,7 @@ class RewardApp(Validator):
                     # Sign the submission
                     self._sign_with_private_key(data=data)
                     data_to_store.append(data)
-                    
+
         try:
             self.storage_manager.update_batch(records=data_to_store, async_update=True)
         except Exception as e:
@@ -448,22 +448,22 @@ class RewardApp(Validator):
     def get_revealed_commits(self, miner_submissions: dict[int, dict[str, list[dict]]]) -> dict[str, tuple[list[str], list[int]]]:
         """
         Get revealed commits from miner submissions.
-        
+
         Args:
             miner_submissions: Have same structure as dict returned by get_unscored_miner_submissions() or self.daily_miner_submissions
-        
+
         Returns:
             dict: {
                 challenge_name: ([docker_hub_ids], [miner_uids])
             }
         """
         revealed_commits = {}
-        
+
         for miner_uid, challenges in miner_submissions.items():
             for challenge_name, submission_data in challenges.items():
                 # Handle both single submission and list of submissions
                 submissions = submission_data if isinstance(submission_data, list) else [submission_data]
-                
+
                 for submission in submissions:
                     if submission.get("commit"):
                         this_challenge_revealed_commits = revealed_commits.setdefault(
@@ -472,7 +472,7 @@ class RewardApp(Validator):
                         docker_hub_id = submission["commit"].split("---")[1]
                         this_challenge_revealed_commits[0].append(docker_hub_id)
                         this_challenge_revealed_commits[1].append(miner_uid)
-        
+
         return revealed_commits
 
     def get_unscored_miner_submissions(self) -> dict[int, dict[str, list[dict]]]:
@@ -480,7 +480,7 @@ class RewardApp(Validator):
         Filter out submissions that haven't been scored yet from validators_miner_submit.
         For duplicate submissions (same encrypted_commit), keep the one with latest commit_timestamp
         but preserve other fields.
-        
+
         Returns:
             dict: {
                 miner_uid: {
@@ -498,13 +498,13 @@ class RewardApp(Validator):
         """
         # Temporary structure to track unique submissions
         temp_submissions = {}
-        
+
         for validator_uid, miner_submissions in self.validators_miner_submit.items():
             for miner_uid, challenges in miner_submissions.items():
                 for challenge_name, submission in challenges.items():
                     if challenge_name not in self.active_challenges:
                         continue
-                        
+
                     if not submission.get("encrypted_commit"):
                         continue
 
@@ -512,18 +512,18 @@ class RewardApp(Validator):
                     # Remove log field to rely only on cache for scoring check
                     submission_copy = {k: v for k, v in submission.items() if k != "log"}
                     submission_copy["log"] = {}
-                    
+
                     if not self._is_submission_scored(challenge_name, submission_copy):
                         temp_submissions.setdefault(miner_uid, {}).setdefault(challenge_name, {})
-                        
+
                         encrypted_commit = submission["encrypted_commit"]
                         existing = temp_submissions[miner_uid][challenge_name].get(encrypted_commit)
-                        
+
                         if existing:
                             # Update timestamp if newer
                             if submission["commit_timestamp"] > existing["commit_timestamp"]:
                                 existing["commit_timestamp"] = submission["commit_timestamp"]
-                            
+
                             # Update other fields if they become available
                             for field in ["commit", "key"]:
                                 if not existing.get(field) and submission.get(field):
@@ -531,7 +531,7 @@ class RewardApp(Validator):
                         else:
                             # Add new submission
                             temp_submissions[miner_uid][challenge_name][encrypted_commit] = submission_copy
-        
+
         # Convert to final structure with lists
         unscored_submissions = {}
         for miner_uid, challenges in temp_submissions.items():
@@ -539,38 +539,38 @@ class RewardApp(Validator):
                 challenge_name: list(submissions.values())
                 for challenge_name, submissions in challenges.items()
             }
-        
+
         return unscored_submissions
-    
+
     def _is_submission_scored(self, challenge_name: str, submission: dict) -> bool:
         """
         Check if a submission has been scored by looking at its cache entry.
-        
+
         Args:
             challenge_name (str): Name of the challenge
             submission (dict): Submission data containing encrypted_commit
-        
+
         Returns:
             bool: True if submission has been scored, False otherwise
         """
         if not submission.get("encrypted_commit"):
             return False
-            
+
         # Check cache for scoring logs
         hashed_cache_key = self.storage_manager.hash_cache_key(submission["encrypted_commit"])
         cache = self.storage_manager._get_cache(challenge_name)
         cached_submission = cache.get(hashed_cache_key)
-        
+
         return bool(cached_submission and cached_submission.get("log"))
-    
+
     # MARK: Endpoints
     async def get_scoring_logs(self, chalenge_name: str, docker_hub_ids: list[str]) -> dict[str, Optional[list[dict]]]:
         """
         API endpoint to get scoring logs for specific docker hub IDs.
-        
+
         Args:
             docker_hub_ids: List of docker hub IDs to look up
-            
+
         Returns:
             dict: {
                 docker_hub_id: scoring_log or None if not found
@@ -578,11 +578,11 @@ class RewardApp(Validator):
         """
         result = {}
         docker_score_cache = self.storage_manager._get_cache("_docker_hub_id_score_log")
-    
+
         for docker_id in docker_hub_ids:
             cached_log = docker_score_cache.get(f"{chalenge_name}---{docker_id}")
             result[docker_id] = cached_log if cached_log else None
-        
+
         return result
 
     async def get_challenge_records(self, challenge_name: str):

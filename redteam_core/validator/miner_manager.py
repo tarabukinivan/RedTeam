@@ -41,7 +41,7 @@ class MinerCommit(BaseModel):
 class ChallengeRecord(BaseModel):
     point: float = 0
     score: float = 0
-    date: str = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d")
+    date: str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     scored_date: Optional[str] = None
     docker_hub_id: Optional[str] = None
     uid: Optional[int] = None
@@ -65,23 +65,23 @@ class MinerManager:
         self.uids_to_commits: Dict[int, MinerCommit] = {}
         self.challenge_records: Dict[str, ChallengeRecord] = {}
         self.challenge_incentive_weight = challenge_incentive_weight
-    
+
     def update_uid_to_commit(self, uids: List[int], commits: List[MinerCommit]) -> None:
         for uid, commit in zip(uids, commits):
-            self.uids_to_commits[uid] = commit  
+            self.uids_to_commits[uid] = commit
 
     def update_scores(self, logs: List[ScoringLog]) -> None:
         """
         Updates the scores for miners based on new logs.
         Ensures daily records are maintained.
         """
-        today = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d")
+        today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
 
         if today in self.challenge_records:
             # No need to update if today's record already exists
             return
 
-        prev_day = (datetime.datetime.now(datetime.UTC) - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+        prev_day = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
         prev_day_record = self.challenge_records.get(prev_day)
 
         if prev_day_record is None:
@@ -124,20 +124,20 @@ class MinerManager:
                         prev_scored_date = record.date
                         break
                     current_date -= datetime.timedelta(days=1)
-            
+
             # If no matching record found, use the prev_day_record's date
             if prev_scored_date is None:
                 prev_scored_date = prev_day_record.date
             today_record = ChallengeRecord(
-                score=prev_day_record.score, 
+                score=prev_day_record.score,
                 date=today,
                 scored_date=prev_scored_date,
-                docker_hub_id=prev_day_record.docker_hub_id, 
+                docker_hub_id=prev_day_record.docker_hub_id,
                 uid=prev_day_record.uid
             )
             # REMEMBER WE ARE HANDLING BACKWARD COMPATIBILITY USING POINT FIELD SO WAIT FOR THE NEW VERSION TO BE STABLE BEFORE ADDING THIS !!!
             # Do this if we want to explicitly save the decayed points.
-            # scored_date = datetime.datetime.strptime(today_record.scored_date, "%Y-%m-%d") 
+            # scored_date = datetime.datetime.strptime(today_record.scored_date, "%Y-%m-%d")
             # days_passed = (today - scored_date).days
             # point = constants.decay_points(today_record.point, days_passed)
             # today_record.point = point
@@ -148,7 +148,7 @@ class MinerManager:
         Returns a numpy array of scores, applying decay for older records.
         """
         scores = np.zeros(n_uids)  # Should this be configurable?
-        today = datetime.datetime.now(datetime.UTC)
+        today = datetime.datetime.now(datetime.timezone.utc)
 
         for date_str, record in self.challenge_records.items():
             record_date = datetime.datetime.strptime(date_str, "%Y-%m-%d")

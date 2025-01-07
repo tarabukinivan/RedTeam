@@ -72,7 +72,7 @@ class StorageManager:
             os.makedirs(self.cache_dir, exist_ok=True)
 
         # Get the list of the last 14 days' date strings in the format 'YYYY-MM-DD' and create allow patterns
-        date_strings = [(datetime.datetime.now(datetime.UTC) - datetime.timedelta(days=i)).strftime("%Y-%m-%d") for i in range(14)]
+        date_strings = [(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=i)).strftime("%Y-%m-%d") for i in range(14)]
         allow_patterns = [f"*{date_str}/*" for date_str in date_strings]
         # Download the snapshot
         repo_snapshot_path = self._snapshot_repo(erase_cache=False, allow_patterns=allow_patterns)
@@ -89,7 +89,7 @@ class StorageManager:
                 continue
 
             challenge_folder_path = os.path.join(repo_snapshot_path, challenge_name)
-            
+
             if not os.path.isdir(challenge_folder_path):
                 continue
             for date_str in date_strings:
@@ -135,7 +135,7 @@ class StorageManager:
         bt.logging.warning("This operation may alter the Hub repository significantly!")
 
         # Take a snapshot of the Hugging Face Hub repository
-        today = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d")
+        today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
         repo_snapshot_path = self._snapshot_repo(erase_cache=False, allow_patterns=[f"*{today}/*"])
 
         # Step 1: Build a set of records already in the Hub
@@ -166,7 +166,7 @@ class StorageManager:
             # Skip non-active challenges and non challenge submissions
             if challenge_name not in self.active_challenges:
                 continue
-            
+
             for key in cache.iterkeys():
                 value = cache[key]
                 filepath = f"{challenge_name}/{today}/{key}.json"
@@ -234,9 +234,9 @@ class StorageManager:
 
         if async_update:
             self.storage_queue.put(data)
-            bt.logging.info(f"Record with encrypted_commit={data["encrypted_commit"]} queued for storage.")
+            bt.logging.info(f"Record with encrypted_commit={data['encrypted_commit']} queued for storage.")
             return
-        
+
         # Process the record immediately
         if retry_config is None:
             retry_config = {"local": 3, "centralized": 5, "decentralized": 5}
@@ -244,7 +244,7 @@ class StorageManager:
         challenge_name = data["challenge_name"]
         hashed_cache_key = self.hash_cache_key(data["encrypted_commit"])
         cache_data = self._sanitize_data_for_storage(data=data)
-        
+
         # Track success for all storage operations
         success = True
         errors = []
@@ -274,7 +274,7 @@ class StorageManager:
             errors.append(error)
 
         # Step 3: HuggingFace Hub with retry
-        today = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d")
+        today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
         hf_filepath = f"{challenge_name}/{today}/{hashed_cache_key}.json"
 
         def decentralized_operation():
@@ -299,7 +299,7 @@ class StorageManager:
     def update_challenge_record(self, data: dict, async_update=True, retry_config=None):
         """
         Updates challenge records across all storages with independent retries.
-        
+
         Args:
             data (dict): The challenge records data.
             async_update (bool): Whether to process the update asynchronously.
@@ -310,7 +310,7 @@ class StorageManager:
         if not all(field in data for field in required_fields):
             bt.logging.error(f"Data must include all required fields: {required_fields} in update_challenge_record()")
             return
-        
+
         if async_update:
             self.storage_queue.put(data)
             return
@@ -383,22 +383,22 @@ class StorageManager:
             self.storage_queue.put((records, update_method))
             bt.logging.info(f"Batch of size {len(records)} queued for storage using {update_method}")
             return
-        
+
         # Get the appropriate processing method
         processor = getattr(self, update_method)
-        
+
         # Process each record synchronously
         with ThreadPoolExecutor(max_workers=5) as executor:
             executor.map(lambda record: processor(record, async_update=False), records)
 
     def update_repo_id(self, data: dict):
-        """ 
-        Updates repository ID to the centralized storage. 
+        """
+        Updates repository ID to the centralized storage.
         """
         try:
             response = requests.post(
                 self.centralized_repo_id_storage_url,
-                json=data, 
+                json=data,
                 timeout=20,
             )
             response.raise_for_status()
@@ -410,7 +410,7 @@ class StorageManager:
     # def _update_centralized_storage(self, data: dict, url: str):
     #     """
     #     Generic method to update data in centralized storage.
-        
+
     #     Args:
     #         data (dict): Data to update
     #         url (str): URL endpoint to send data to
@@ -418,7 +418,7 @@ class StorageManager:
     #     try:
     #         response = requests.post(
     #             url,
-    #             json=data, 
+    #             json=data,
     #             timeout=20,
     #         )
     #         response.raise_for_status()
@@ -438,7 +438,7 @@ class StorageManager:
         Hashes the cache key using SHA-256 to avoid Filename too long error.
         """
         return hashlib.sha256(cache_key.encode()).hexdigest()
-    
+
     def _snapshot_repo(self, erase_cache: bool, allow_patterns=None, ignore_patterns=None) -> str:
         """
         Creates a snapshot of the Hugging Face Hub repository in a temporary cache directory.
@@ -454,7 +454,7 @@ class StorageManager:
             allow_patterns=allow_patterns,
             ignore_patterns=ignore_patterns
         )
-    
+
     def _validate_hf_repo(self):
         """
         Validates the Hugging Face repository:
@@ -507,14 +507,14 @@ class StorageManager:
         if cache_name not in self.local_caches:
             cache_path = os.path.join(self.cache_dir, cache_name)
             cache = Cache(cache_path, eviction_policy="none")
-            
+
             # Set TTL only if it's an active challenge
             if cache_name in self.active_challenges:
                 cache.expire = self.cache_ttl
-                
+
             self.local_caches[cache_name] = cache
         return self.local_caches[cache_name]
-    
+
     def _process_storage_queue(self):
         """
         Background thread function to process storage tasks from the queue.
@@ -523,7 +523,7 @@ class StorageManager:
         while True:
             try:
                 data = self.storage_queue.get(timeout=1)  # Wait for a task
-                
+
                 if isinstance(data, tuple) and isinstance(data[0], list):  # Batch update with method
                     records, process_method = data
                     self.update_batch(records, process_method=process_method, async_update=False)
@@ -543,7 +543,7 @@ class StorageManager:
         """
         # Create a deep copy of the data to avoid modifying the original in-place
         cache_data = data.copy()
-        
+
         # Sanitize the nested 'log' dictionaries with placeholder values
         if "log" in data:
             cache_data["log"] = {
@@ -553,9 +553,9 @@ class StorageManager:
                     **{"miner_output": {} if "miner_output" in log_value else None}  # Only add placeholder if exists
                 } for log_value in logs_value] for date, logs_value in data["log"].items()
             }
-            
+
         return cache_data
-    
+
     def _retry_operation(self, operation, max_retries: int, operation_name: str) -> tuple[bool, str]:
         """
         Helper method to retry operations with exponential backoff.
@@ -582,6 +582,6 @@ class StorageManager:
                 wait_time = min(2 ** attempt, 32)  # Exponential backoff, max 8 seconds
                 bt.logging.warning(f"{operation_name} attempt {attempt + 1} failed, retrying in {wait_time}s: {last_error}")
                 time.sleep(wait_time)
-        
+
         error_msg = f"{operation_name} failed after {max_retries} attempts. Last error: {last_error}"
         return False, error_msg
