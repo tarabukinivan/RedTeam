@@ -369,7 +369,7 @@ class StorageManager:
         else:
             bt.logging.error(f"Failed to update challenge records. Errors: {errors}")
 
-    def update_batch(self, records: list[dict], update_method: str = "update_record", async_update=True):
+    def update_batch(self, records: list[dict], process_method: str = "update_record", async_update=True):
         """
         Processes a batch of records efficiently across all storages.
 
@@ -380,12 +380,12 @@ class StorageManager:
         """
         if async_update:
             # Enqueue the entire batch along with the processing method
-            self.storage_queue.put((records, update_method))
-            bt.logging.info(f"Batch of size {len(records)} queued for storage using {update_method}")
+            self.storage_queue.put((records, process_method))
+            bt.logging.info(f"Batch of size {len(records)} queued for storage using {process_method}")
             return
 
         # Get the appropriate processing method
-        processor = getattr(self, update_method)
+        processor = getattr(self, process_method)
 
         # Process each record synchronously
         with ThreadPoolExecutor(max_workers=5) as executor:
