@@ -104,7 +104,7 @@ class Validator(BaseValidator):
                 else:
                     miner_submit[miner_uid][challenge_name] = submission
 
-        return miner_submit
+        self.miner_submit = miner_submit
 
     def _init_miner_submit_from_subnet(self, is_today_scored: bool = False):
         """
@@ -188,9 +188,6 @@ class Validator(BaseValidator):
         self.update_miner_commit(self.active_challenges)
         bt.logging.success(f"[FORWARD] Miner submit: {self.miner_submit}")
         revealed_commits = self.get_revealed_commits()
-
-        # Why is this here?
-        self._init_challenge_records_from_subnet(validator_ss58_address=self.metagraph.hotkeys[self.uid])
 
         for challenge, (commits, uids) in revealed_commits.items():
             if challenge not in self.active_challenges:
@@ -363,21 +360,25 @@ class Validator(BaseValidator):
 
                 # Process scoring logs
                 for docker_hub_id, logs in submission_scoring_logs.items():
-                    if docker_hub_id in mapping_docker_id_miner_id and logs:
-                        miner_uid = mapping_docker_id_miner_id[docker_hub_id]
-                        scored_docker_ids.add(docker_hub_id)
+                    try:
+                        if docker_hub_id in mapping_docker_id_miner_id and logs:
+                            miner_uid = mapping_docker_id_miner_id[docker_hub_id]
+                            scored_docker_ids.add(docker_hub_id)
 
-                        for log in logs:
-                            scoring_logs.append(
-                                ScoringLog(
-                                    uid=miner_uid,
-                                    score=log["score"],
-                                    miner_input=log["miner_input"],
-                                    miner_output=log["miner_output"],
-                                    miner_docker_image=docker_hub_id,
-                                    error=log.get("error")
-                                )
-                            )
+                            for log in logs:
+                                scoring_logs.append(
+                                    ScoringLog(
+                                        uid=miner_uid,
+                                        score=log["score"],
+                                        miner_input=log["miner_input"],
+                                        miner_output=log["miner_output"],
+                                        miner_docker_image=docker_hub_id,
+                                        error=log.get("error"),
+                                        baseline_score=log.get("baseline_score")
+                                        )
+                                    )
+                    except Exception as e:
+                        bt.logging.error(f"[GET CENTRALIZED SCORING LOGS] Get scoring logs for{docker_hub_id} failed: {e}")
             except (requests.RequestException, KeyError):
                 # TODO: OLD VERSION, REMOVE AFTER TWO WEEKS WHEN ALL VALIDATORS HAVE UPDATED TO NEW VERSION
                 # Fallback to old API format
@@ -402,8 +403,8 @@ class Validator(BaseValidator):
                                 ScoringLog(
                                     uid=miner_uid,
                                     score=log["score"],
-                                    miner_input=log["miner_input"],
-                                    miner_output=log["miner_output"],
+                                    miner_input=log.get("miner_input"),
+                                    miner_output=log.get("miner_output"),
                                     miner_docker_image=docker_hub_id,
                                     error=log.get("error")
                                 )
@@ -471,7 +472,7 @@ class Validator(BaseValidator):
         """
         Queries the axons for miner commit updates and decrypts them if the reveal interval has passed.
         """
-         # uids = [1]  # Change this to query multiple uids as needed
+        # uids = [1]  # Change this to query multiple uids as needed
         uids = self.metagraph.uids
         axons = [self.metagraph.axons[i] for i in uids]
         dendrite = bt.dendrite(wallet=self.wallet)

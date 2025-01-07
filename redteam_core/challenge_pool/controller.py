@@ -41,6 +41,15 @@ class Controller:
         self.resource_limits = challenge_info["resource_limits"]
         self.local_network = "redteam_local"
 
+        """
+        Add baseline image to compare with miners
+        """
+        self.baseline_image = self.challenge_info.get("baseline", None)
+        self.uid_baseline = -1
+        if self.baseline_image:
+            self.miner_docker_images.insert(0, self.baseline_image)
+            self.uids.insert(0, self.uid_baseline)
+
     def _clear_all_container(self):
         """
         Stops and removes all running Docker containers.
@@ -78,9 +87,10 @@ class Controller:
             self._get_challenge_from_container()
             for _ in range(constants.N_CHALLENGES_PER_EPOCH)
         ]
-        logs = []
+        logs = [] # Logs for miners
+        baseline_logs = [] # Logs for baseline
         for miner_docker_image, uid in zip(self.miner_docker_images, self.uids):
-            try:    
+            try:
                 is_image_valid = self._validate_image_with_digest(miner_docker_image)
                 if not is_image_valid:
                     continue
@@ -95,6 +105,8 @@ class Controller:
                             capabilities=[["gpu"]],
                         )
                     ]
+
+                miner_start_time = time.time()
                 miner_container = self.docker_client.containers.run(
                     miner_docker_image,
                     detach=True,
@@ -112,13 +124,14 @@ class Controller:
                 )
 
                 self._check_container_alive(
-                    miner_container, 
-                    health_port=constants.MINER_DOCKER_PORT, 
+                    miner_container,
+                    health_port=constants.MINER_DOCKER_PORT,
                     is_challenger=False,
-                    timeout=self.challenge_info.get("docker_run_timeout", 600)
+                    timeout=self.challenge_info.get("docker_run_timeout", 600),
+                    start_time=miner_start_time
                 )
 
-                for miner_input in challenges:
+                for i, miner_input in enumerate(challenges):
                     miner_output, error_message = self._submit_challenge_to_miner(miner_input)
                     score = (
                         self._score_challenge(miner_input, miner_output)
@@ -132,20 +145,30 @@ class Controller:
                         "miner_docker_image": miner_docker_image,
                         "uid": uid,
                     }
+
+                    if uid != self.uid_baseline and len(baseline_logs) > i:
+                        log["score"] -= baseline_logs[i]["score"]
+                        log["baseline_score"] = baseline_logs[i]["score"]
+
                     if error_message:
                         log["error"] = error_message
-                    logs.append(log)
+
+                    if uid == self.uid_baseline:
+                        baseline_logs.append(log)
+                    else:
+                        logs.append(log)
             except Exception as e:
                 bt.logging.error(f"Error while processing miner {uid}: {e}")
-                logs.append(
-                    {
-                        "miner_input": None,
-                        "miner_output": None,
-                        "score": 0,
-                        "miner_docker_image": miner_docker_image,
-                        "uid": uid,
-                        "error": str(e),
-                    }
+                if uid != self.uid_baseline:
+                    logs.append(
+                        {
+                            "miner_input": None,
+                            "miner_output": None,
+                            "score": 0,
+                            "miner_docker_image": miner_docker_image,
+                            "uid": uid,
+                            "error": str(e),
+                        }
                 )
             self._clear_container_by_port(constants.MINER_DOCKER_PORT)
         self._remove_challenge_container()
@@ -454,12 +477,13 @@ class Controller:
         except Exception as e:
             bt.logging.error(f"An error occurred while cleaning up docker resources: {e}")
 
-    def _check_container_alive(self, container: docker.models.containers.Container, health_port, is_challenger=True, timeout=None):
+    def _check_container_alive(self, container: docker.models.containers.Container, health_port, is_challenger=True, timeout=None, start_time=None):
         """Check when the container is running successfully"""
-        start_time = time.time() 
+        if not start_time:
+            start_time = time.time()
         while not self._check_alive(
             port=health_port, is_challenger=is_challenger
-        ) and ( 
+        ) and (
             not timeout or time.time() - start_time < timeout
         ):
             container.reload()
