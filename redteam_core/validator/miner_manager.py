@@ -151,15 +151,22 @@ class MinerManager:
         scores = np.zeros(n_uids)  # Should this be configurable?
         today = datetime.datetime.now(datetime.timezone.utc)
 
+        total_points = 0
         for date_str, record in self.challenge_records.items():
             record_date = datetime.datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=datetime.timezone.utc)
             days_passed = (today - record_date).days
             point = constants.decay_points(record.point, days_passed)
             if record.uid is not None:
                 scores[record.uid] += point
+                total_points += point
+
             # NOT UPDATED FOR COMPATIBILITY WITH OLD DATA
             # Only add points for the records that have scored date equal to recorded date (recorded by making improvement)
             # if record.scored_date == record.date:
             #     scores[record.uid] += point
+            #     total_points += point
+
+        if total_points > 0:
+            scores /= total_points
 
         return scores
