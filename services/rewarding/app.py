@@ -19,6 +19,7 @@ import copy
 import datetime
 import bittensor as bt
 import os
+
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=10001)
