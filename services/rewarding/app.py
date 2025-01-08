@@ -56,7 +56,7 @@ class RewardApp:
         self.storage_manager = StorageManager(
             cache_dir=self.args.cache_dir,
             hf_repo_id=self.args.hf_repo_id,
-            sync_on_init=True
+            sync_on_init=False
         )
 
         self.sync_metagraph_thread = threading.Thread(target=self._sync_metagraph, daemon=True).start()

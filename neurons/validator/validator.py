@@ -369,10 +369,11 @@ class Validator(BaseValidator):
 
             # Get scoring logs from server
             endpoint = constants.REWARDING_URL + "/get_scoring_logs"
+            endpoint_v2 = constants.REWARDING_URL + "/v2/get_scoring_logs"
 
             # Try new API first
             try:
-                response = requests.get(endpoint, params={
+                response = requests.get(endpoint_v2, params={
                     "challenge_name": challenge_name,
                     "docker_hub_ids": docker_ids
                 })
