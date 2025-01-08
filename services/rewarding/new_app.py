@@ -24,8 +24,8 @@ from redteam_core import (
 )
 from redteam_core.common import get_config
 
-REWARD_APP_SERVER_SS58_ADDRESS = "5GEPhXy4b6QBvnKnrUeTevxVVuNCZLPng3JVcGqXwRc7Rg1n"
-REWARD_APP_SERVER_UID = -1
+REWARD_APP_SS58_ADDRESS = "5GEPhXy4b6QBvnKnrUeTevxVVuNCZLPng3JVcGqXwRc7Rg1n"
+REWARD_APP_UID = -1
 
 def get_reward_app_config() -> bt.Config:
     parser = argparse.ArgumentParser()
