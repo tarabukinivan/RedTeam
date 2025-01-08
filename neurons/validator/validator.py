@@ -93,6 +93,7 @@ class Validator(BaseValidator):
         if datetime.datetime.now(datetime.timezone.utc) <= datetime.datetime(2025, 1, 15, 14, 0, 0, 0, datetime.timezone.utc):
             all_challenges.pop("response_quality_adversarial_v2", None)
             all_challenges.pop("response_quality_ranker_v2", None)
+            all_challenges.pop("webui_auto", None)
         else:
             all_challenges.pop("response_quality_adversarial", None)
             all_challenges.pop("response_quality_ranker", None)
