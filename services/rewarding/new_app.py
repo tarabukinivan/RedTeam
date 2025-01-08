@@ -22,6 +22,8 @@ from redteam_core import (
 )
 from redteam_core.common import get_config
 
+REWARD_APP_SERVER_SS58_ADDRESS = "5GEPhXy4b6QBvnKnrUeTevxVVuNCZLPng3JVcGqXwRc7Rg1n"
+REWARD_APP_SERVER_UID = -1
 
 def get_reward_app_config() -> bt.Config:
     parser = argparse.ArgumentParser()
@@ -41,7 +43,15 @@ class RewardApp(Validator):
     """
     def __init__(self, config: bt.Config):
         """Initialize the reward app with validator capabilities."""
-        BaseValidator.__init__(self, config)
+        # Initialize BaseValidator with some moddification
+        self.config = config
+        self.setup_logging()
+        self.setup_bittensor_objects()
+        self.last_update = 0
+        self.current_block = 0
+        # We can get ss58_address with "self.wallet.hotkey.ss58_address"
+        self.ss58_address = REWARD_APP_SERVER_SS58_ADDRESS
+        self.uid = REWARD_APP_SERVER_UID
 
         self.active_challenges = challenge_pool.ACTIVE_CHALLENGES
         self.miner_managers = {
@@ -72,6 +82,17 @@ class RewardApp(Validator):
             host="0.0.0.0",
             port=self.config.port,
         )
+
+    def setup_bittensor_objects(self):
+        bt.logging.info("Setting up Bittensor objects.")
+        self.wallet = bt.wallet(config=self.config)
+        bt.logging.info(f"Wallet: {self.wallet}")
+        self.subtensor = bt.subtensor(config=self.config)
+        bt.logging.info(f"Subtensor: {self.subtensor}")
+        self.dendrite = bt.dendrite(wallet=self.wallet)
+        bt.logging.info(f"Dendrite: {self.dendrite}")
+        self.metagraph = self.subtensor.metagraph(self.config.netuid)
+        bt.logging.info(f"Metagraph: {self.metagraph}")
 
     def _init_validators_miner_submit_from_subnet(self):
         pass
