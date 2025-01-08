@@ -21,9 +21,9 @@ import bittensor as bt
 import os
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--port", type=int, default=47921)
-    parser.add_argument("--netuid", type=int, default=119)
-    parser.add_argument("--network", type=str, default="test")
+    parser.add_argument("--port", type=int, default=10001)
+    parser.add_argument("--netuid", type=int, default=61)
+    parser.add_argument("--network", type=str, default="finney")
     parser.add_argument("--reward_app_key", type=str, default=os.getenv("REWARD_APP_KEY"))
     parser.add_argument("--cache_dir", type=str, default="cache_reward_app")
     parser.add_argument("--hf_repo_id", type=str, default=os.getenv("HF_REPO_ID"))
