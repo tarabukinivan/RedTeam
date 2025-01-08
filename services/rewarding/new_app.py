@@ -52,8 +52,8 @@ class RewardApp(Validator):
         self.last_update = 0
         self.current_block = 0
         # We can get ss58_address with "self.wallet.hotkey.ss58_address"
-        self.ss58_address = REWARD_APP_SERVER_SS58_ADDRESS
-        self.uid = REWARD_APP_SERVER_UID
+        self.ss58_address = REWARD_APP_SS58_ADDRESS
+        self.uid = REWARD_APP_SS58_ADDRESS
         self.is_running = False
 
         self.active_challenges = challenge_pool.ACTIVE_CHALLENGES
