@@ -215,7 +215,7 @@ class RewardApp(Validator):
         # Cache new scores
         docker_score_cache = self.storage_manager._get_cache("_docker_hub_id_score_log")
         for log in logs:
-            cache_key = f"{challenge_name}---{log["miner_docker_image"]}"
+            cache_key = f'{challenge_name}---{log["miner_docker_image"]}'
             if cache_key in docker_score_cache:
                 docker_score_cache[cache_key].append(log)
             else:
