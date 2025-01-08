@@ -29,6 +29,7 @@ class Validator(BaseValidator):
         """
         super().__init__(config)
 
+        self.miner_managers = {}
         self.smooth_transition_challenge()
         # self.active_challenges = challenge_pool.ACTIVE_CHALLENGES
         # self.miner_managers = {
@@ -99,10 +100,9 @@ class Validator(BaseValidator):
             all_challenges.pop("response_quality_ranker", None)
 
         self.active_challenges = all_challenges
-        self.miner_managers = {
-            challenge: MinerManager(challenge_name=challenge, challenge_incentive_weight=self.active_challenges[challenge]["challenge_incentive_weight"])
-            for challenge in self.active_challenges.keys()
-        }
+        for challenge in self.active_challenges.keys():
+            if challenge not in self.miner_managers:
+                self.miner_managers[challenge] = MinerManager(challenge_name=challenge, challenge_incentive_weight=self.active_challenges[challenge]["challenge_incentive_weight"])
 
     def _init_miner_submit_from_cache(self):
         """
