@@ -3,12 +3,14 @@ import argparse
 import datetime
 import traceback
 import requests
+import threading
 from typing import Optional
 from collections import defaultdict
 from itertools import chain
 
 import uvicorn
 import bittensor as bt
+from pydantic import BaseModel
 from fastapi import FastAPI
 
 from neurons.validator.validator import Validator
@@ -22,8 +24,8 @@ from redteam_core import (
 )
 from redteam_core.common import get_config
 
-REWARD_APP_SERVER_SS58_ADDRESS = "5GEPhXy4b6QBvnKnrUeTevxVVuNCZLPng3JVcGqXwRc7Rg1n"
-REWARD_APP_SERVER_UID = -1
+REWARD_APP_SS58_ADDRESS = "5GEPhXy4b6QBvnKnrUeTevxVVuNCZLPng3JVcGqXwRc7Rg1n"
+REWARD_APP_UID = -1
 
 def get_reward_app_config() -> bt.Config:
     parser = argparse.ArgumentParser()
@@ -50,8 +52,9 @@ class RewardApp(Validator):
         self.last_update = 0
         self.current_block = 0
         # We can get ss58_address with "self.wallet.hotkey.ss58_address"
-        self.ss58_address = REWARD_APP_SERVER_SS58_ADDRESS
-        self.uid = REWARD_APP_SERVER_UID
+        self.ss58_address = REWARD_APP_SS58_ADDRESS
+        self.uid = REWARD_APP_SS58_ADDRESS
+        self.is_running = False
 
         self.active_challenges = challenge_pool.ACTIVE_CHALLENGES
         self.miner_managers = {
@@ -74,14 +77,21 @@ class RewardApp(Validator):
 
         # Initialize FastAPI app
         self.app = FastAPI()
-        self.app.add_api_route("/get_scoring_logs", self.get_scoring_logs, methods=["GET"], response_model=dict[str, Optional[list[dict]]])
+        self.app.add_api_route("/get_scoring_logs", self.get_scoring_logs, methods=["POST"], response_model=dict[str, Optional[list[dict]]])
         self.app.add_api_route("/get_challenge_records", self.get_challenge_records, methods=["GET"])
-        # Run FastAPI server
-        uvicorn.run(
-            self.app,
-            host="0.0.0.0",
-            port=self.config.port,
+        # Run FastAPI server in a separate thread
+        self.server_thread = threading.Thread(
+            target=uvicorn.run,
+            kwargs={
+                "app": self.app,
+                "host": "0.0.0.0",
+                "port": self.config.port,
+                "log_level": "debug"
+            },
+            daemon=True,  # Ensures the thread stops when the main process exits
         )
+        self.server_thread.start()
+        bt.logging.info(f"FastAPI server is running on port {self.config.port}!")
 
     def setup_bittensor_objects(self):
         bt.logging.info("Setting up Bittensor objects.")
@@ -389,7 +399,7 @@ class RewardApp(Validator):
                 # Find matching submission for this log
                 for submission in unscored_submissions[miner_uid].get(challenge_name, []):
                     # TODO: CHECK IF THIS MATCHIG LOGIC CORRECT
-                    if submission.get("commit") == log.miner_docker_image:
+                    if submission.get("commit") == f"{challenge_name}---{log.miner_docker_image}":
                         # Add today's log directly to the submission
                         if today not in submission["log"]:
                             submission["log"][today] = []
@@ -584,7 +594,14 @@ class RewardApp(Validator):
         return bool(cached_submission and cached_submission.get("log"))
 
     # MARK: Endpoints
-    async def get_scoring_logs(self, chalenge_name: str, docker_hub_ids: list[str]) -> dict[str, Optional[list[dict]]]:
+    class ScoringLogsRequest(BaseModel):
+        """
+        Inner class to define the body of the POST request for `get_scoring_logs`.
+        """
+        challenge_name: str
+        docker_hub_ids: list[str]
+
+    async def get_scoring_logs(self, scoring_log_request: ScoringLogsRequest) -> dict[str, Optional[list[dict]]]:
         """
         API endpoint to get scoring logs for specific docker hub IDs.
 
@@ -596,11 +613,14 @@ class RewardApp(Validator):
                 docker_hub_id: scoring_log or None if not found
             }
         """
+        challenge_name = scoring_log_request.challenge_name
+        docker_hub_ids = scoring_log_request.docker_hub_ids
+
         result = {}
         docker_score_cache = self.storage_manager._get_cache("_docker_hub_id_score_log")
 
         for docker_id in docker_hub_ids:
-            cached_log = docker_score_cache.get(f"{chalenge_name}---{docker_id}")
+            cached_log = docker_score_cache.get(f"{challenge_name}---{docker_id}")
             result[docker_id] = cached_log if cached_log else None
 
         return result
