@@ -93,6 +93,16 @@ class Controller:
             try:
                 is_image_valid = self._validate_image_with_digest(miner_docker_image)
                 if not is_image_valid:
+                    logs.append(
+                        {
+                            "miner_input": None,
+                            "miner_output": None,
+                            "score": 0,
+                            "miner_docker_image": miner_docker_image,
+                            "uid": uid,
+                            "error": f"Invalid image format: {miner_docker_image}. Must include a SHA256 digest. Skip evaluation!",
+                        }
+                    )
                     continue
                 bt.logging.info(f"[Controller] Running miner {uid}: {miner_docker_image}")
                 self._clear_container_by_port(constants.MINER_DOCKER_PORT)
@@ -169,7 +179,7 @@ class Controller:
                             "uid": uid,
                             "error": str(e),
                         }
-                )
+                    )
             self._clear_container_by_port(constants.MINER_DOCKER_PORT)
         self._remove_challenge_container()
         self._clean_up_docker_resources()
