@@ -181,6 +181,7 @@ class Controller:
                         }
                     )
             self._clear_container_by_port(constants.MINER_DOCKER_PORT)
+            self._clean_up_docker_resources()
         self._remove_challenge_container()
         self._clean_up_docker_resources()
         return logs
@@ -459,7 +460,7 @@ class Controller:
 
         return _protocol, _ssl_verify
 
-    def _clean_up_docker_resources(self, remove_containers: bool = True, remove_images: bool = True):
+    def _clean_up_docker_resources(self, remove_containers: bool = True, remove_images: bool = True, remove_networks: bool = False):
         """Clean up docker resources by removing all exited or dead containers, dangling images, and unused networks."""
         try:
             if remove_containers:
@@ -481,7 +482,8 @@ class Controller:
             bt.logging.info("Pruning unused resources (volumes, build cache)...")
             self.docker_client.api.prune_builds()
             self.docker_client.volumes.prune()
-            self.docker_client.networks.prune()
+            if remove_networks:
+                self.docker_client.networks.prune()
 
             bt.logging.info("Docker resources cleaned up successfully.")
         except Exception as e:
