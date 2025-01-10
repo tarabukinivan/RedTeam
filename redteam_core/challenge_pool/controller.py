@@ -146,8 +146,12 @@ class Controller:
                     score = (
                         self._score_challenge(miner_input, miner_output)
                         if miner_output is not None
-                        else 0
+                        else 0.0
                     )
+                    if type(score) == int:
+                        score = float(score)
+                    elif not type(score) == float:
+                        score = 0.0
                     log = {
                         "miner_input": miner_input,
                         "miner_output": miner_output,
