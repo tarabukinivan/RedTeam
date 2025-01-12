@@ -138,11 +138,11 @@ class RewardApp:
                         self.miner_managers[challenge_name].update_scores(scoring_logs)
                         self._store_challenge_records()
                         bt.logging.info(f"[SCORING] Scoring for challenge: {challenge_name} has been completed for {today_key}")
-            else:
-                bt.logging.info(f"[SCORING] Scoring for {today_key} is not due")
-            if all(self.is_scoring_done.get(challenge_name, False) for challenge_name in self.active_challenges.keys()):
-                bt.logging.info(f"[SCORING] All tasks: Scoring completed for {today_key}")
-                self.scoring_dates.append(today_key)
+
+                        if all(self.is_scoring_done.get(challenge_name, False) for challenge_name in self.active_challenges.keys()):
+                            bt.logging.info(f"[SCORING] All tasks: Scoring completed for {today_key}")
+                            self.scoring_dates.append(today_key)
+
             time.sleep(100)
 
 
