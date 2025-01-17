@@ -19,6 +19,7 @@ import copy
 import datetime
 import bittensor as bt
 import os
+from prometheus_fastapi_instrumentator import Instrumentator
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -66,13 +67,15 @@ class RewardApp:
 
         self.app = FastAPI()
         self.app.add_api_route("/get_scoring_logs", self.get_scoring_logs, methods=["GET"])
+        Instrumentator().instrument(self.app).expose(self.app)
 
     def smooth_transition_challenge(self):
         # TODO: Remove this next update
         """
         Smooth transition challenge from old to new challenge
         """
-        all_challenges = challenge_pool.ACTIVE_CHALLENGES
+        all_challenges = copy.deepcopy(challenge_pool.ACTIVE_CHALLENGES)
+
         if datetime.datetime.now(datetime.timezone.utc) <= datetime.datetime(2025, 1, 15, 14, 0, 0, 0, datetime.timezone.utc):
             all_challenges.pop("response_quality_adversarial_v2", None)
             all_challenges.pop("response_quality_ranker_v2", None)
@@ -185,7 +188,7 @@ class RewardApp:
                 try:
                     if "docker_hub_id" in commit_data:
                         docker_hub_id = commit_data["docker_hub_id"]
-                    elif not commit_data.get("commit") and commit_data.get("key") and time.time() - commit_data["commit_timestamp"] > 24 * 60 * 60:
+                    elif not commit_data.get("commit") and commit_data.get("key") and time.time() - commit_data["commit_timestamp"] > 24 * 60 * 60 and constants.is_commit_on_time(commit_data["commit_timestamp"]):
                         f = Fernet(commit_data["key"])
                         commit = f.decrypt(commit_data["encrypted_commit"]).decode()
                         docker_hub_id = commit.split("---")[1]
