@@ -103,8 +103,8 @@ class RewardApp:
             print("Active challenges: ", self.active_challenges.keys())
             self.fetch_miner_submit(validator_ss58_address=None)
             grouped_miner_submit, self.mapping_docker_id_miner_id = self.group_miner_submit_by_challenge(self.miner_submit)
-            self.run_challenges(grouped_miner_submit)
-            is_updated = self.save_submission_scoring_logs()
+            new_submission_scoring_logs = self.run_challenges(grouped_miner_submit)
+            is_updated = self.save_submission_scoring_logs(new_submission_scoring_logs)
             if not is_updated:
                 print("[INFO] No new submission, sleeping for 60 seconds")
                 time.sleep(60)
@@ -150,32 +150,43 @@ class RewardApp:
 
 
     def run_challenges(self, docker_images_by_challenge: dict):
-
+        new_submission_scoring_logs = {}
         for challenge_name, challenge_info in self.active_challenges.items():
-            if challenge_name not in self.submission_scoring_logs:
-                self.submission_scoring_logs[challenge_name] = {}
-            not_scored_submissions = [docker_hub_id for docker_hub_id in docker_images_by_challenge.get(challenge_name, []) if docker_hub_id not in self.submission_scoring_logs.get(challenge_name)]
-            not_scored_submissions = list(set(not_scored_submissions))
-            not_scored_uids = [self.mapping_docker_id_miner_id[docker_hub_id]["uid"] for docker_hub_id in not_scored_submissions]
-            if len(not_scored_submissions) == 0:
-                self.is_scoring_done[challenge_name] = True
-                continue
-            else:
-                self.is_scoring_done[challenge_name] = False
-            controller = challenge_info["controller"](
-                challenge_name=challenge_name,
-                miner_docker_images=not_scored_submissions,
-                uids=not_scored_uids,
-                challenge_info=challenge_info
-            )
-            logs = controller.start_challenge()
-            for log in logs:
-                log = self._normalize_log(log)
-                miner_docker_image = log["miner_docker_image"]
-                if miner_docker_image not in self.submission_scoring_logs[challenge_name]:
-                    self.submission_scoring_logs[challenge_name][miner_docker_image] = []
-                self.submission_scoring_logs[challenge_name][miner_docker_image].append(log)
+            try:
+                if challenge_name not in self.submission_scoring_logs:
+                    self.submission_scoring_logs[challenge_name] = {}
+                if challenge_name not in new_submission_scoring_logs:
+                    new_submission_scoring_logs[challenge_name] = {}
+                not_scored_submissions = [docker_hub_id for docker_hub_id in docker_images_by_challenge.get(challenge_name, []) if docker_hub_id not in self.submission_scoring_logs.get(challenge_name)]
+                not_scored_submissions = list(set(not_scored_submissions))
+                not_scored_uids = [self.mapping_docker_id_miner_id[docker_hub_id]["uid"] for docker_hub_id in not_scored_submissions]
+                if len(not_scored_submissions) == 0:
+                    self.is_scoring_done[challenge_name] = True
+                    continue
+                else:
+                    self.is_scoring_done[challenge_name] = False
+                controller = challenge_info["controller"](
+                    challenge_name=challenge_name,
+                    miner_docker_images=not_scored_submissions,
+                    uids=not_scored_uids,
+                    challenge_info=challenge_info
+                )
+                print(f"[CHALLENGE] Challenge {challenge_name} has been started")
+                logs = controller.start_challenge()
+                for log in logs:
+                    log = self._normalize_log(log)
+                    miner_docker_image = log["miner_docker_image"]
+                    if miner_docker_image not in self.submission_scoring_logs[challenge_name]:
+                        self.submission_scoring_logs[challenge_name][miner_docker_image] = []
+                    self.submission_scoring_logs[challenge_name][miner_docker_image].append(log)
 
+                    if miner_docker_image not in new_submission_scoring_logs[challenge_name]:
+                        new_submission_scoring_logs[challenge_name][miner_docker_image] = []
+                    new_submission_scoring_logs[challenge_name][miner_docker_image].append(log)
+            except Exception as e:
+                print(f"[ERROR] Error running challenge {challenge_name}: {e}")
+                # self.is_scoring_done[challenge_name] = True
+        return new_submission_scoring_logs
     def group_miner_submit_by_challenge(self, miner_submit: dict):
         docker_images_by_challenge = {}
         mapping_docker_id_miner_id = {}
@@ -265,16 +276,18 @@ class RewardApp:
             print(f"[ERROR] Error fetching submission scoring logs from storage: {e}")
             return {}
 
-    def save_submission_scoring_logs(self):
+    def save_submission_scoring_logs(self, new_submission_scoring_logs: dict):
         endpoint = constants.STORAGE_URL + "/upload-centralized-score"
         try:
             # If all submission scoring logs are empty, return False
-            if all(not value for value in self.submission_scoring_logs.values()):
+            if all(not value for value in new_submission_scoring_logs.values()):
                 return False
-            # If submission scoring logs are not updated, return False
-            if self.previous_submission_scoring_logs == self.submission_scoring_logs:
-                return False
-            response = requests.post(endpoint, json={"data": self.submission_scoring_logs})
+            # if all(not value for value in self.submission_scoring_logs.values()):
+            #     return False
+            # # If submission scoring logs are not updated, return False
+            # if self.previous_submission_scoring_logs == self.submission_scoring_logs:
+            #     return False
+            response = requests.post(endpoint, json={"data": new_submission_scoring_logs})
             if response.status_code == 200:
                 print("[SUCCESS] Submission scoring logs successfully saved to storage.")
                 self.previous_submission_scoring_logs = copy.deepcopy(self.submission_scoring_logs)
