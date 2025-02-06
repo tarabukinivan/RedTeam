@@ -1,6 +1,7 @@
 import os
 import time
 import json
+import random
 import requests
 import threading
 import hashlib
@@ -245,6 +246,15 @@ class StorageManager:
         challenge_name = data["challenge_name"]
         hashed_cache_key = self.hash_cache_key(data["encrypted_commit"])
         cache_data = self._sanitize_data_for_storage(data=data)
+
+        # Check if update is needed
+        if self._compare_record_to_cache(challenge_name, hashed_cache_key, cache_data):
+            # 10% chance to update anyway
+            if random.random() < 0.1:
+                bt.logging.info(f"Record {hashed_cache_key} already exists in local cache for challenge {challenge_name}, but updating anyway.")
+            else:
+                bt.logging.info(f"Record {hashed_cache_key} already exists in local cache for challenge {challenge_name}, skipping update.")
+                return
 
         # Track success for all storage operations
         success = True
@@ -582,6 +592,26 @@ class StorageManager:
             }
 
         return cache_data
+
+    def _compare_record_to_cache(self, cache_name: str, cache_key: str, record: dict) -> bool:
+        """
+        Compares a record to the cache and returns True if the record is already in the cache with the same data, False otherwise.
+        """
+        cache = self._get_cache(cache_name)
+        existing_record = cache.get(cache_key, None)
+
+        # Check if data exists in cache
+        if existing_record is None:
+            return False
+
+        # Serialize and compare
+        try:
+            existing_record_str = json.dumps(existing_record)
+            record_str = json.dumps(record)
+            return existing_record_str == record_str
+        except Exception as e:
+            bt.logging.error(f"Error serializing record to compare: {e}")
+            return False
 
     def _retry_operation(self, operation, max_retries: int, operation_name: str) -> tuple[bool, str]:
         """
