@@ -211,7 +211,7 @@ class Validator(BaseValidator):
         """
         self.smooth_transition_challenge()
         self.update_miner_commit(self.active_challenges)
-        bt.logging.success(f"[FORWARD] Miner submit: {self.miner_submit}")
+        bt.logging.success(f"[FORWARD] Forwarding for {datetime.datetime.now(datetime.timezone.utc)}")
         revealed_commits = self.get_revealed_commits()
 
         for challenge, (commits, uids) in revealed_commits.items():

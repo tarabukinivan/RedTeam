@@ -241,7 +241,7 @@ class StorageManager:
 
         # Process the record immediately
         if retry_config is None:
-            retry_config = {"local": 3, "centralized": 5, "decentralized": 5}
+            retry_config = {"local": 3, "centralized": 3, "decentralized": 3}
 
         challenge_name = data["challenge_name"]
         hashed_cache_key = self.hash_cache_key(data["encrypted_commit"])
@@ -636,7 +636,7 @@ class StorageManager:
                 last_error = str(e)
                 if attempt == max_retries - 1:
                     break
-                wait_time = min(2 ** attempt, 32)  # Exponential backoff, max 8 seconds
+                wait_time = min(5 ** attempt, 32)  # Exponential backoff
                 bt.logging.warning(f"{operation_name} attempt {attempt + 1} failed, retrying in {wait_time}s: {last_error}")
                 time.sleep(wait_time)
 
