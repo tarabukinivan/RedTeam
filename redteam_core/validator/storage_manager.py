@@ -597,8 +597,15 @@ class StorageManager:
         """
         Compares a record to the cache and returns True if the record is already in the cache with the same data, False otherwise.
         """
+        # Non-content fields
+        non_content_fields = ["nonce", "signature"]
+
         cache = self._get_cache(cache_name)
         existing_record = cache.get(cache_key, None)
+
+        # Construct temp records that exclude non-content fields for comparison
+        temp_existing_record = {field: existing_record[field] for field in existing_record if field not in non_content_fields}
+        temp_record = {field: record[field] for field in record if field not in non_content_fields}
 
         # Check if data exists in cache
         if existing_record is None:
@@ -606,8 +613,8 @@ class StorageManager:
 
         # Serialize and compare
         try:
-            existing_record_str = json.dumps(existing_record)
-            record_str = json.dumps(record)
+            existing_record_str = json.dumps(temp_existing_record)
+            record_str = json.dumps(temp_record)
             return existing_record_str == record_str
         except Exception as e:
             bt.logging.error(f"Error serializing record to compare: {e}")
