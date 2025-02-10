@@ -224,7 +224,7 @@ class RewardApp:
         """
         active_validator_uids = []
 
-        for uid, stake in enumerate(self.metagraph.stake):
+        for uid, stake in enumerate(self.metagraph.S):
             if stake > constants.MIN_VALIDATOR_STAKE:
                 active_validator_uids.append(uid)
 
@@ -235,6 +235,7 @@ class RewardApp:
                 endpoint = constants.STORAGE_URL + "/fetch-miner-submit"
                 data = {
                     "validator_uid": validator_uid,
+                    "validator_ss58_address": self.metagraph.hotkeys[validator_uid],
                     "challenge_names": list(self.active_challenges.keys())
                 }
                 response = requests.post(endpoint, json=data)
@@ -249,7 +250,7 @@ class RewardApp:
                             # Skip if miner hotkey no longer in metagraph
                             continue
                         for challenge_name, commit_data in challenges.items():
-                            validator_miner_submit.setdefault(validator_uid, {})[miner_ss58_address][challenge_name] = {
+                            validator_miner_submit.setdefault(validator_uid, {}).setdefault(miner_ss58_address, {})[challenge_name] = {
                                 "commit_timestamp": commit_data["commit_timestamp"],
                                 "encrypted_commit": commit_data["encrypted_commit"],
                                 "key": commit_data["key"],
