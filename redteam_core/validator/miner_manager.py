@@ -146,27 +146,45 @@ class MinerManager:
 
     def get_onchain_scores(self, n_uids: int) -> np.ndarray:
         """
-        Returns a numpy array of scores, applying decay for older records.
+        Returns a numpy array of scores using a hybrid approach:
+        - 50% based on each miner's best score as a proportion of all best scores
+        - 50% based on the original improvement-based scoring with decay
         """
-        scores = np.zeros(n_uids)  # Should this be configurable?
+        # Initialize arrays for both scoring components
+        improvement_scores = np.zeros(n_uids)
+        best_scores = np.zeros(n_uids)
         today = datetime.datetime.now(datetime.timezone.utc)
 
-        total_points = 0
+        # Track best score for each miner
+        miner_best_scores = {}  # uid -> best_score mapping
+
+        # Calculate improvement-based scores with decay (50% weight)
+        total_improvement_points = 0
         for date_str, record in self.challenge_records.items():
             record_date = datetime.datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=datetime.timezone.utc)
             days_passed = (today - record_date).days
             point = constants.decay_points(record.point, days_passed)
+
             if record.uid is not None:
-                scores[record.uid] += point
-                total_points += point
+                improvement_scores[record.uid] += point
+                total_improvement_points += point
 
-            # NOT UPDATED FOR COMPATIBILITY WITH OLD DATA
-            # Only add points for the records that have scored date equal to recorded date (recorded by making improvement)
-            # if record.scored_date == record.date:
-            #     scores[record.uid] += point
-            #     total_points += point
+                # Track best score for each miner
+                current_score = record.score
+                if record.uid not in miner_best_scores or current_score > miner_best_scores[record.uid]:
+                    miner_best_scores[record.uid] = current_score
 
-        if total_points > 0:
-            scores /= total_points
+        # Normalize improvement scores if there are any points
+        if total_improvement_points > 0:
+            improvement_scores /= total_improvement_points
 
-        return scores
+        # Calculate proportional scores based on best performances (50% weight)
+        total_best_scores = sum(miner_best_scores.values())
+        if total_best_scores > 0:
+            for uid, best_score in miner_best_scores.items():
+                best_scores[uid] = best_score / total_best_scores
+
+        # Combine both scoring components with equal weights (50-50)
+        final_scores = (improvement_scores * 0.5) + (best_scores * 0.5)
+
+        return final_scores

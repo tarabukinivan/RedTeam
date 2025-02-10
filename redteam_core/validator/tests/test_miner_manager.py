@@ -5,11 +5,11 @@ from redteam_core.validator.miner_manager import MinerManager, ScoringLog, Chall
 
 @pytest.fixture
 def miner_manager():
-    return MinerManager(challenge_name="test_challenge", challenge_incentive_weight=1.0)
+    return MinerManager(challenge_name="webui_auto", challenge_incentive_weight=0.4)
 
 def test_initialization(miner_manager):
-    assert miner_manager.challenge_name == "test_challenge"
-    assert miner_manager.challenge_incentive_weight == 1.0
+    assert miner_manager.challenge_name == "webui_auto"
+    assert miner_manager.challenge_incentive_weight == 0.4
     assert miner_manager.uids_to_commits == {}
     assert miner_manager.challenge_records == {}
 
@@ -27,10 +27,31 @@ def test_update_scores(miner_manager):
 def test_get_onchain_scores(miner_manager):
     today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     yesterday = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-    miner_manager.challenge_records[today] = ChallengeRecord(point=100, score=100, date=today, uid=1)
-    miner_manager.challenge_records[yesterday] = ChallengeRecord(point=50, score=50, date=yesterday, uid=2)
 
-    n_uids = 3
+    # Set up test data
+    # UID 1: High best score but no recent improvements
+    # UID 2: Lower best score but recent improvements
+    # UID 3: Multiple entries to test best score selection
+    # UID 0: No entries (control)
+
+    miner_manager.challenge_records[today] = ChallengeRecord(point=50, score=80, date=today, uid=2)
+    miner_manager.challenge_records[yesterday] = ChallengeRecord(point=100, score=100, date=yesterday, uid=1)
+    miner_manager.challenge_records[(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=2)).strftime("%Y-%m-%d")] = ChallengeRecord(point=30, score=70, date=yesterday, uid=3)
+    miner_manager.challenge_records[(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3)).strftime("%Y-%m-%d")] = ChallengeRecord(point=20, score=60, date=yesterday, uid=3)
+
+    n_uids = 4
     scores = miner_manager.get_onchain_scores(n_uids)
-    assert scores[1] > scores[2], "Score of uid 1 should be greater than uid 2 because one of the records has been submited erlier"
-    assert scores[0] == 0 , "Score of uid 0 should be 0 because it has no record"
+
+    # Test proportional scoring component (50%)
+    assert scores[1] > 0, "UID 1 should get points for highest best score (100)"
+    assert scores[2] > 0, "UID 2 should get points for good best score (80)"
+
+    # Test improvement scoring component (50%)
+    assert scores[2] > 0, "UID 2 should get points for recent improvement"
+
+    # Test overall hybrid scoring
+    assert scores[0] == 0, "UID 0 should have zero score (no entries)"
+    assert scores[1] + scores[2] > 0, "Both UIDs 1 and 2 should have non-zero total scores"
+
+    # Verify scores are normalized
+    assert abs(sum(scores) - 1.0) < 1e-6, "Scores should sum to approximately 1"

@@ -148,7 +148,7 @@
 		"**/.DS_Store": true,
 		"**/Thumbs.db": true
 	},
-	"python.languageServer": "Pylance",
+	"python.languageServer": "None",
 	"python.analysis.extraPaths": [
 		"${workspaceFolder}/redteam_core/challenge_pool/webui_auto/src",
 		"${workspaceFolder}/redteam_core/miner/commits/webui_auto/src",
