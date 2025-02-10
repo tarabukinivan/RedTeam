@@ -118,7 +118,7 @@ class RewardApp(Validator):
         4. Store results back to storage
         """
         # Update submissions from all validators
-        self.update_validators_miner_commit(self.active_challenges)
+        self._update_validators_miner_commit(self.active_challenges)
 
         # Get unscored submissions and their revealed commits
         unscored_submissions = self.get_unscored_miner_submissions()
@@ -283,7 +283,7 @@ class RewardApp(Validator):
 
     # MARK: Commit Management
     # TODO: Check can we use uid instead of ss58_address for miner_submit keys
-    def update_validators_miner_commit(self, active_challenges) -> list[dict]:
+    def _update_validators_miner_commit(self, active_challenges) -> list[dict]:
         """
         Fetch all miner_submit for challenges from all valid validators in the subnet.
         """
