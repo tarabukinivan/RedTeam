@@ -11,7 +11,7 @@ from ._base import FrozenBaseConfig
 
 
 class ChallengeConfig(FrozenBaseConfig):
-    n_ch_per_epoch: int = Field(...)
+    n_task_per_epoch: int = Field(...)
     docker_ulimit: int = Field(...)
     allowed_pip_pkg_dt: datetime = Field(...)
     allowed_file_exts: List[
@@ -30,7 +30,7 @@ class ChallengeConfig(FrozenBaseConfig):
     cb_gen_max_factor: int = Field(..., ge=2, le=100)
     cb_size: int = Field(..., ge=10, le=100)
     cb_exclude_areas: Optional[List[Dict[str, int]]] = Field(default=None)
-    cb_pre_action_list: Optional[
+    pre_tasks_actions: Optional[
         List[List[Dict[str, Union[int, str, Dict[str, Dict[str, int]]]]]]
     ] = Field(default=None)
 

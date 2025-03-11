@@ -25,26 +25,22 @@ from api.logger import logger
 
 
 @validate_call
-def gen_key_pairs(n_challenge: int, key_size: int) -> List[KeyPairPM]:
+def gen_key_pair(key_size: int) -> KeyPairPM:
 
-    _key_pairs: List[KeyPairPM] = []
-    for _ in range(n_challenge):
-        _key_pair: Tuple[str, str] = asymmetric_helper.gen_key_pair(
-            key_size=key_size, as_str=True
-        )
-        _private_key, _public_key = _key_pair
-        _nonce = utils.gen_random_string(length=32)
-        _key_pair_pm = KeyPairPM(
-            private_key=_private_key, public_key=_public_key, nonce=_nonce
-        )
-        _key_pairs.append(_key_pair_pm)
-
-    return _key_pairs
+    _key_pair: Tuple[str, str] = asymmetric_helper.gen_key_pair(
+        key_size=key_size, as_str=True
+    )
+    _private_key, _public_key = _key_pair
+    _nonce = utils.gen_random_string(length=32)
+    _key_pair_pm = KeyPairPM(
+        private_key=_private_key, public_key=_public_key, nonce=_nonce
+    )
+    return _key_pair_pm
 
 
 @validate_call
-def gen_cb_actions(
-    n_challenge: int = 10,
+def gen_tasks_actions(
+    n_task: int = 10,
     window_width: int = 1420,
     window_height: int = 740,
     n_checkboxes: int = 5,
@@ -52,29 +48,29 @@ def gen_cb_actions(
     max_factor: int = 10,
     checkbox_size: int = 20,  # Assuming checkbox size ~20px
     exclude_areas: Union[List[Dict[str, int]], None] = None,
-    pre_action_list: Union[
+    pre_tasks_actions: Union[
         List[List[Dict[str, Union[int, str, Dict[str, Dict[str, int]]]]]], None
     ] = None,
 ) -> List[List[Dict[str, Union[int, str, Dict[str, Dict[str, int]]]]]]:
 
-    _max_attempts = n_checkboxes * max_factor  # Avoid infinite loops
+    _max_attempt = n_checkboxes * max_factor  # Avoid infinite loops
 
-    _challenge_list = []
-    for _ in range(n_challenge):
-        _n_attempts = 0
+    _tasks_actions = []
+    for _ in range(n_task):
         _i = 0
-        _action_list = []
+        _n_attempt = 0
 
-        if pre_action_list:
-            _action_list = pre_action_list.pop(0)
+        _actions = []
+        if pre_tasks_actions:
+            _actions = pre_tasks_actions.pop(0)
 
-        while len(_action_list) < n_checkboxes:
+        while len(_actions) < n_checkboxes:
             _x = random.randint(checkbox_size, window_width - checkbox_size)
             _y = random.randint(checkbox_size, window_height - checkbox_size)
 
             _is_near = False
-            _i = len(_action_list)
-            for _action in _action_list:
+            _i = len(_actions)
+            for _action in _actions:
                 if _action["type"] == "click":
                     ## Calculate distance between two points using Euclidean distance:
                     if (_x - _action["args"]["location"]["x"]) ** 2 + (
@@ -98,17 +94,17 @@ def gen_cb_actions(
                     "type": "click",
                     "args": {"location": {"x": _x, "y": _y}},
                 }
-                _action_list.append(_action)
+                _actions.append(_action)
 
-            _n_attempts += 1
+                _n_attempt += 1
 
-            if _max_attempts <= _n_attempts:
+            if _max_attempt <= _n_attempt:
                 logger.warning("Skipped generating positions due to max attempts!")
                 break
 
-        _challenge_list.append(_action_list)
+        _tasks_actions.append(_actions)
 
-    return _challenge_list
+    return _tasks_actions
 
 
 @validate_call
@@ -251,7 +247,7 @@ def build_bot_image(
 @validate_call(config={"arbitrary_types_allowed": True})
 def run_bot_container(
     docker_client: DockerClient,
-    action_list: List[Dict],
+    actions: List[Dict],
     image_name: str = "bot:latest",
     container_name: str = "bot_container",
     network_name: str = "local_network",
@@ -297,7 +293,7 @@ def run_bot_container(
             ulimits=[_ulimit_nofile],
             environment={
                 "TZ": "UTC",
-                f"{ENV_PREFIX}ACTION_LIST": action_list,
+                f"{ENV_PREFIX}ACTION_LIST": actions,
             },
             network=network_name,
             detach=True,
@@ -333,8 +329,8 @@ def decrypt(ciphertext: str, private_key: str) -> str:
 
 
 __all__ = [
-    "gen_key_pairs",
-    "gen_cb_actions",
+    "gen_key_pair",
+    "gen_tasks_actions",
     "check_pip_requirements",
     "copy_bot_files",
     "build_bot_image",

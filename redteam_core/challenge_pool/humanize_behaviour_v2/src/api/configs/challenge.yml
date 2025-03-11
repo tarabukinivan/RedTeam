@@ -1,5 +1,5 @@
 challenge:
-  n_ch_per_epoch: 10
+  n_task_per_epoch: 10
   docker_ulimit: 32768
   allowed_pip_pkg_dt: "2025-01-01T00:00:00Z"
   allowed_file_exts: [".py", ".json", ".yaml", ".yml", ".txt", ".pt"]
@@ -11,7 +11,7 @@ challenge:
   cb_gen_max_factor: 20
   cb_size: 50
   cb_exclude_areas: [{ "x1": 500, "y1": 400, "x2": 950, "y2": 700 }]
-  cb_pre_action_list:
+  pre_tasks_actions:
     [
       [
         {

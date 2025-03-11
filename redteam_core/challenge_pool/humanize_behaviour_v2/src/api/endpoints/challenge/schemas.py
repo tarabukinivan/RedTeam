@@ -13,7 +13,6 @@ from api.core.constants import (
     REQUIREMENTS_REGEX,
 )
 from api.config import config
-from api.core import utils
 
 
 _src_dir = pathlib.Path(__file__).parent.parent.parent.parent.resolve()
@@ -61,6 +60,15 @@ class KeyPairPM(BaseModel):
     )
 
 
+class TaskPM(BaseModel):
+    id: int = Field(...)
+    key_pair: Union[KeyPairPM, None] = Field(default=None)
+    actions: Union[
+        List[Dict[str, Union[int, str, Dict[str, Dict[str, int]]]]], None
+    ] = Field(default=None)
+    score: Union[float, None] = Field(default=None)
+
+
 class MinerFilePM(BaseModel):
     fname: constr(strip_whitespace=True) = Field(  # type: ignore
         ...,
@@ -98,35 +106,21 @@ class MinerFilePM(BaseModel):
         return val
 
 
-class ActionConfig(BaseModel):
-    action_list: Dict[str, Any] = Field(
+class MinerInput(BaseModel):
+    actions: List[Dict[str, Any]] = Field(
         ...,
-        title="Action List",
+        title="Actions",
+        min_length=1,
         description="List of actions to be performed.",
         examples=[
-            {
-                "actions": [
-                    {
-                        "id": "1",
-                        "type": "click",
-                        "args": {"location": {"x": 100, "y": 200}},
-                    }
-                ]
-            }
+            [
+                {
+                    "id": 1,
+                    "type": "click",
+                    "args": {"location": {"x": 100, "y": 200}},
+                }
+            ]
         ],
-    )
-
-
-class MinerInput(BaseModel):
-    random_val: Optional[
-        constr(
-            strip_whitespace=True, min_length=4, max_length=64, pattern=ALPHANUM_REGEX
-        )  # type: ignore
-    ] = Field(
-        default_factory=utils.gen_random_string,
-        title="Random Value",
-        description="Random value to prevent caching.",
-        examples=["a1b2c3d4e5f6g7h8"],
     )
 
 
@@ -171,6 +165,7 @@ class MinerOutput(BaseModel):
 
 __all__ = [
     "KeyPairPM",
+    "TaskPM",
     "MinerInput",
     "MinerOutput",
 ]
