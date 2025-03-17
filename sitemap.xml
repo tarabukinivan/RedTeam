@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/challenge_submission_guide/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/docker/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/miner/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/validator/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/validator_custom/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/template/humanize_behaviour_v1/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/template/response_quality_adversarial_v2/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/template/response_quality_ranker_v2/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
     <url>
          <loc>https://RedTeamSubnet.github.io/RedTeam/template/text_detection/</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-17</lastmod>
     </url>
 </urlset>
