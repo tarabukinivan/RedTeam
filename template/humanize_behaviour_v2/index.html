@@ -1132,14 +1132,14 @@
 
 <h1 id="humanize-behaviour-v2-submission-guide-active-after-march-18th-2025-1400-utc">Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)</h1>
 <h2 id="overview">Overview</h2>
-<p><strong>Humanize Behaviour v2</strong> is a challenge designed to test bot scripts' ability to mimic human behavior within a web UI form. It evaluates how effectively a bot can interact with the form, navigate UI elements, engage with form fields, and submit required data accurately and efficiently, with grading based on <strong>mouse movement</strong> and <strong>keyboard interaction analysis.</strong></p>
-<p>This challenge assesses the precision and sophistication of bot scripts in performing web-based tasks. Miners participating must demonstrate human-like interaction capabilities through their bot scripts when engaging with the web UI form.</p>
+<p><strong>Humanize Behaviour v2</strong> tests bot scripts' ability to mimic human interaction with a web UI form. It evaluates how well a bot navigates UI elements, interacts with form fields, and submits data without being caught by the bot detection system, based on  <strong>mouse movement</strong> and <strong>keyboard interaction analysis.</strong></p>
+<p>Miners must demonstrate precise, human-like interactions through their bot scripts when completing the form.</p>
 <hr />
 <h2 id="example-code-and-submission-instructions">Example Code and Submission Instructions</h2>
 <p>Example code for the Humanize Behaviour v2 can be found in the <a href="../../redteam_core/miner/commits/humanize_behaviour_v2/src/bot/bot.py"><code>redteam_core/miner/commits/humanize_behaviour_v2/src/bot/bot.py</code></a> file.</p>
 <h3 id="technical-requirements">Technical Requirements</h3>
 <ul>
-<li>Python 3.10</li>
+<li>Python 3.12</li>
 <li>Ubuntu 24.04</li>
 <li>Docker container: selenium/standalone-chrome:4.28.1</li>
 </ul>
@@ -1151,12 +1151,12 @@
 <li>Work with the provided Selenium driver</li>
 <li>Follow the click sequence specified in <code>config</code></li>
 <li>Input text into designated fields</li>
-<li>Submit the form successfully</li>
+<li>Submit the form without errors</li>
 </ol>
 <h3 id="key-guidelines">Key Guidelines</h3>
 <ul>
 <li><strong>Driver Usage</strong>: Stick to the provided Selenium driver to ensure proper evaluation</li>
-<li><strong>Action Sequence</strong>: Follow the provided <code>config</code> order precisely - deviations will result in a zero score. You have to click login button at the end of session. If your script press it the middle or start, your data will be sent to process as the result you will get zero score because of inadequate actions.</li>
+<li><strong>Action Sequence</strong>: Follow the provided <code>config</code> order. Clicking it at the start or in the middle will prematurely submit data and result in a zero score due to invalid action flow.</li>
 <li><strong>Click Behavior</strong>:<ul>
 <li>Only click at specified locations</li>
 <li>Additional clicks for input fields and submit buttons are allowed</li>
@@ -1173,7 +1173,7 @@
 <li>Enable headless mode</li>
 <li>List dependencies in <a href="../../redteam_core/miner/commits/humanize_behaviour_v2/src/bot/requirements.txt"><code>requirements.txt</code></a>. See the limitations for dependencies</li>
 <li>Use amd64 architecture (ARM64 at your own risk)</li>
-<li>If your script requires system-level dependencies, add them to  <a href="../../redteam_core/miner/commits/humanize_behaviour_v2/src/bot/system_deps.txt"><code>system_deps.txt</code></a> . If this file does not exist, create it by yourself. There is no limitation for system level dependencies.</li>
+<li>If your script requires system-level dependencies, add them to  <a href="../../redteam_core/miner/commits/humanize_behaviour_v2/src/bot/"><code>system_deps.txt</code></a>.</li>
 </ul>
 </li>
 <li><strong>Limitations</strong><ul>
@@ -1196,10 +1196,10 @@
 <h3 id="plagiarism-check">Plagiarism Check</h3>
 <p>We maintain strict originality standards:</p>
 <ul>
-<li>All submissions are compared against other miners' code</li>
+<li>All submissions are compared against other miners' script</li>
 <li>100% similarity = zero score</li>
-<li>Similarity more then 60% will result in significant score reduction</li>
-<li>Note: We don't compare against your previous humanize_behavior_v2 submissions</li>
+<li>Similarity above 60% will result in proportional score penalties based on the <strong>detected similarity percentage</strong>.</li>
+<li>Note: Comparisons are only made against other miners’ submissions, not your own previous Humanize Behaviour v2 entries.</li>
 </ul>
 <h2 id="submission-guide">Submission Guide</h2>
 <p>Follow 1~6 steps to submit your script.</p>
