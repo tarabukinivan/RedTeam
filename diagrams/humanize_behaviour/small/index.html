@@ -923,44 +923,94 @@
 
 <h1 id="humanize-behavior-challenge-small">Humanize behavior challenge (Small)</h1>
 <pre class="mermaid"><code>flowchart TD
-    start@{ shape: stadium, label: "Start" }
-    validator@{ shape: card, label: "validator" }
-    controller@{ shape: card, label: "controller" }
+  subgraph validator["Validator"]
+    vl_init["Initialize challenge"]
+    vl_scoring{"Scoring type"}
+    vl_local["Local scoring"]
+    vl_global["Global scoring"]
+    vl_create_ctrl["Create controller"]
+    vl_create_comp["Create comparer"]
+    vl_update["Update miner scores &amp; state"]
+  end
 
-    start --&gt; validator
-    validator -- 1.Forward --&gt; controller
-    controller -- 2.Start --&gt; challenge
-    controller -- 3.Build --&gt; challenger
-    controller -- 4.Run --&gt; challenger
-    controller -- 5.Check --&gt; ch_health_endpoint
-    controller -- 6.Download --&gt; miners
-    controller -- 7.Run --&gt; miners
-    controller -- 8.Check --&gt; mi_health_endpoint
-    controller -- 9.Get tasks --&gt; ch_task_endpoint
-    controller -- 10.Send tasks --&gt; mi_solve_endpoint
-    controller -- 11.Score bot_py --&gt; ch_score_endpoint
-    ch_score_endpoint -- 12.Build bot_py --&gt; bot_image
-    ch_score_endpoint -- 13.Run bot_py --&gt; bot_container
-    bot_container -- 14.Load web --&gt; ch_web_endpoint
+  subgraph controller["Controller"]
+    ct_start["Start challenge"]
+    ct_setup["Setup challenge"]
+    ct_build["Build challenger"]
+    ct_run["Run challenger"]
+    ct_miners["Setup &amp; run miners"]
+    ct_score["Score miners"]
+    ct_tasks["Send tasks to miners"]
+  end
 
-    subgraph challenge
-    subgraph challenger
-    bot_image@{ shape: rect, label: "bot_image" }
-    bot_container@{ shape: rect, label: "bot_container" }
+  subgraph comparer["Comparer"]
+    cm_start["Start comparison"]
+    cm_compare["Compare outputs"]
+  end
 
-    ch_health_endpoint@{ shape: rounded, label: "[GET] /health" }
-    ch_task_endpoint@{ shape: rounded, label: "[GET] /task" }
-    ch_score_endpoint@{ shape: rounded, label: "[POST] /score" }
-    ch_web_endpoint@{ shape: rounded, label: "[GET] /_web" }
-    ch_compare_endpoint@{ shape: rounded, label: "[POST] /compare" }
+  subgraph challenger["Challenger Container"]
+    ch_server["API Server"]
+    ch_endpoints["Endpoints: /task, /score, /_web, /_eval, /compare"]
+    ch_bot["Build &amp; run bot container"]
+    ch_check["Check scores"]
+    ch_cfg["Create CFG manager"]
 
+    subgraph cfg_manager["CFG Manager"]
+      cfg_compare["Run CFG comparison"]
     end
 
-    subgraph miners
-    mi_health_endpoint@{ shape: rounded, label: "[GET] /health" }
-    mi_solve_endpoint@{ shape: rounded, label: "[POST] /solve" }
+    subgraph bot["Bot Container"]
+      bot_main["Run main"]
+      bot_driver["Setup &amp; run WebUI driver"]
+      bot_page["Load web page"]
+      bot_script["Run bot script"]
+      bot_tasks["Check tasks done"]
     end
-    end</code></pre>
+  end
+
+  subgraph miners["Miners Container"]
+    mi_server["API Server"]
+    mi_solve["[POST] /solve endpoint"]
+    mi_read["Read bot files"]
+  end
+
+  %% Main workflow
+  start(["Start"]) --&gt; validator
+  vl_init --&gt; vl_scoring
+  vl_scoring -- "Local" --&gt; vl_local
+  vl_scoring -- "Global" --&gt; vl_global
+  vl_local --&gt; vl_create_ctrl &amp; vl_create_comp &amp; vl_update
+  vl_create_ctrl -.-&gt; controller
+  vl_create_comp -.-&gt; comparer
+
+  %% Controller workflow
+  ct_start --&gt; ct_setup --&gt; ct_build --&gt; ct_run
+  ct_start --&gt; ct_miners --&gt; ct_score --&gt; ct_tasks
+  ct_build -. "Build" .-&gt; challenger
+  ct_run == "Run" ==&gt; challenger
+  ct_miners == "Run" ==&gt; miners
+
+  %% Challenger workflow
+  ch_server -- "Has" --&gt; ch_endpoints
+  ch_endpoints --&gt; ch_bot &amp; ch_check &amp; ch_cfg
+  ch_bot == "Run" ==&gt; bot
+  ch_cfg -.-&gt; cfg_manager
+
+  %% Bot workflow
+  bot_main --&gt; bot_driver --&gt; bot_page &amp; bot_script &amp; bot_tasks
+  bot_tasks ==&gt; ch_server
+
+  %% Miners workflow
+  mi_server -- "Has" --&gt; mi_solve
+  mi_solve --&gt; mi_read
+
+  %% Comparer workflow
+  cm_start --&gt; cm_compare
+  cm_compare &lt;== "Compare" ==&gt; ch_endpoints
+
+  %% Task communication
+  ct_tasks &lt;== "Send tasks" ==&gt; mi_solve
+  bot_page &lt;== "Web page" ==&gt; ch_endpoints</code></pre>
 
 
 
