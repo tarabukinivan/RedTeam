@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/challenge_submission_guide/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/1.validator/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/docker/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/2.miner/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/miner/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/3.submission_guide/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/validator/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/4.validator_custom/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/validator_custom/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/5.docker/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/diagrams/humanize_behaviour/flw.general/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/challenge_templates/humanize_behaviour_v2/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/diagrams/humanize_behaviour/flw.small/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/challenge_templates/deprecated/humanize_behaviour_v1/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/template/humanize_behaviour_v1/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/challenge_templates/deprecated/response_quality_adversarial_v2/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/template/humanize_behaviour_v2/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/challenge_templates/deprecated/response_quality_ranker_v2/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/template/response_quality_adversarial_v2/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/challenge_templates/deprecated/text_detection/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/template/response_quality_ranker_v2/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/diagrams/humanize_behaviour/flw.general/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
     <url>
-         <loc>https://RedTeamSubnet.github.io/RedTeam/template/text_detection/</loc>
-         <lastmod>2025-03-18</lastmod>
+         <loc>https://docs.theredteam.io/diagrams/humanize_behaviour/flw.small/</loc>
+         <lastmod>2025-03-24</lastmod>
     </url>
 </urlset>

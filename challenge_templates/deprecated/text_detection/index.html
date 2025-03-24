@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://RedTeamSubnet.github.io/RedTeam/template/humanize_behaviour_v2/">
+        <link rel="canonical" href="https://docs.theredteam.io/challenge_templates/deprecated/text_detection/">
       
       
-        <link rel="prev" href="../humanize_behaviour_v1/">
+        <link rel="prev" href="../response_quality_ranker_v2/">
       
       
-        <link rel="next" href="../response_quality_adversarial_v2/">
+        <link rel="next" href="../../../diagrams/humanize_behaviour/flw.general/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
     
     
       
-        <title>Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC) - RedTeam Subnet</title>
+        <title>Text Detection Submission Guide (Deprecated) - RedTeam Subnet</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#humanize-behaviour-v2-submission-guide-active-after-march-18th-2025-1400-utc" class="md-skip">
+        <a href="#text-detection-submission-guide-deprecated" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="RedTeam Subnet" class="md-header__button md-logo" aria-label="RedTeam Subnet" data-md-component="logo">
+    <a href="../../.." title="RedTeam Subnet" class="md-header__button md-logo" aria-label="RedTeam Subnet" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)
+              Text Detection Submission Guide (Deprecated)
             
           </span>
         </div>
@@ -231,7 +231,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
     
@@ -248,58 +248,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../challenge_submission_guide/" class="md-tabs__link">
-        
-  
-    
-  
-  Submission Guide
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../docker/" class="md-tabs__link">
-        
-  
-    
-  
-  Docker Guide
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../miner/" class="md-tabs__link">
-        
-  
-    
-  
-  Miner Setup
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../validator/" class="md-tabs__link">
+      <a href="../../../1.validator/" class="md-tabs__link">
         
   
     
@@ -316,15 +265,88 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../validator_custom/" class="md-tabs__link">
+      <a href="../../../2.miner/" class="md-tabs__link">
         
   
     
   
-  Validator custom
+  Miner Setup
 
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../3.submission_guide/" class="md-tabs__link">
+        
+  
+    
+  
+  Submission Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../4.validator_custom/" class="md-tabs__link">
+        
+  
+    
+  
+  Validator Custom
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../5.docker/" class="md-tabs__link">
+        
+  
+    
+  
+  Docker Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../humanize_behaviour_v2/" class="md-tabs__link">
+          
+  
+    
+  
+  Challenge templates
+
+        </a>
+      </li>
+    
   
 
       
@@ -341,7 +363,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../diagrams/humanize_behaviour/flw.general/" class="md-tabs__link">
+        <a href="../../../diagrams/humanize_behaviour/flw.general/" class="md-tabs__link">
           
   
     
@@ -353,28 +375,6 @@
     
   
 
-    
-  
-
-      
-        
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../humanize_behaviour_v1/" class="md-tabs__link">
-          
-  
-    
-  
-  Template
-
-        </a>
-      </li>
     
   
 
@@ -401,7 +401,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="RedTeam Subnet" class="md-nav__button md-logo" aria-label="RedTeam Subnet" data-md-component="logo">
+    <a href="../../.." title="RedTeam Subnet" class="md-nav__button md-logo" aria-label="RedTeam Subnet" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -431,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -452,70 +452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../challenge_submission_guide/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Submission Guide
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../docker/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Docker Guide
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../miner/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Miner Setup
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../validator/" class="md-nav__link">
+      <a href="../../../1.validator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -536,11 +473,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../validator_custom/" class="md-nav__link">
+      <a href="../../../2.miner/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Validator custom
+    Miner Setup
     
   </span>
   
@@ -552,104 +489,16 @@
     
       
       
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Diagrams
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            Diagrams
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Humanize behaviour
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_1">
-            <span class="md-nav__icon md-icon"></span>
-            Humanize behaviour
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../diagrams/humanize_behaviour/flw.general/" class="md-nav__link">
+      <a href="../../../3.submission_guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Humanize behavior challenge (General)
+    Submission Guide
     
   </span>
   
@@ -658,20 +507,19 @@
     </li>
   
 
-              
-            
-              
-                
+    
+      
+      
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../diagrams/humanize_behaviour/flw.small/" class="md-nav__link">
+      <a href="../../../4.validator_custom/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Humanize behavior challenge (Small)
+    Validator Custom
     
   </span>
   
@@ -680,22 +528,27 @@
     </li>
   
 
-              
-            
-          </ul>
-        </nav>
+    
       
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../5.docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Guide
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
     
       
       
@@ -707,12 +560,6 @@
   
     
     
-      
-        
-      
-        
-      
-        
       
         
       
@@ -731,14 +578,14 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
-    Template
+    Challenge templates
     
   </span>
   
@@ -746,10 +593,83 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Template
+            Challenge templates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../humanize_behaviour_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deprecated
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Deprecated
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -779,156 +699,6 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-code-and-submission-instructions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Code and Submission Instructions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Example Code and Submission Instructions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#technical-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Requirements
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#core-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Core Requirements
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#key-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Guidelines
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#evaluation-criteria" class="md-nav__link">
-    <span class="md-ellipsis">
-      Evaluation Criteria
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#plagiarism-check" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plagiarism Check
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#submission-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      Submission Guide
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      📑 References
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
@@ -936,7 +706,7 @@
         
   
   <span class="md-ellipsis">
-    Response quality adversarial v2
+    Response Quality Adversarial V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)
     
   </span>
   
@@ -973,19 +743,278 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../text_detection/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Text Detection Submission Guide (Deprecated)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Text detection
+    Text Detection Submission Guide (Deprecated)
     
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-navigate-to-the-text-detection-commit-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Navigate to the Text Detection Commit Directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-the-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Build the Docker Image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tag-the-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Tag the Docker Image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-log-in-to-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Log in to Docker
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-push-the-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Push the Docker Image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-retrieve-the-sha256-digest" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Retrieve the SHA256 Digest
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-update-active_commityaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Update active_commit.yaml
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Diagrams
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Diagrams
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Humanize behaviour
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            Humanize behaviour
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../diagrams/humanize_behaviour/flw.general/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Humanize behavior challenge (General)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../diagrams/humanize_behaviour/flw.small/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Humanize behavior challenge (Small)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1025,87 +1054,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#1-navigate-to-the-text-detection-commit-directory" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      1. Navigate to the Text Detection Commit Directory
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-code-and-submission-instructions" class="md-nav__link">
+  <a href="#2-build-the-docker-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Code and Submission Instructions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Example Code and Submission Instructions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#technical-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Requirements
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#core-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Core Requirements
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#key-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Guidelines
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#evaluation-criteria" class="md-nav__link">
-    <span class="md-ellipsis">
-      Evaluation Criteria
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#plagiarism-check" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plagiarism Check
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#submission-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      Submission Guide
+      2. Build the Docker Image
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#3-tag-the-docker-image" class="md-nav__link">
     <span class="md-ellipsis">
-      📑 References
+      3. Tag the Docker Image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-log-in-to-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Log in to Docker
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-push-the-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Push the Docker Image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-retrieve-the-sha256-digest" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Retrieve the SHA256 Digest
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-update-active_commityaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Update active_commit.yaml
     </span>
   </a>
   
@@ -1130,123 +1135,36 @@
   
 
 
-<h1 id="humanize-behaviour-v2-submission-guide-active-after-march-18th-2025-1400-utc">Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)</h1>
-<h2 id="overview">Overview</h2>
-<p><strong>Humanize Behaviour v2</strong> tests bot scripts' ability to mimic human interaction with a web UI form. It evaluates how well a bot navigates UI elements, interacts with form fields, and submits data without being caught by the bot detection system, based on  <strong>mouse movement</strong> and <strong>keyboard interaction analysis.</strong></p>
-<p>Miners must demonstrate precise, human-like interactions through their bot scripts when completing the form.</p>
-<hr />
-<h2 id="example-code-and-submission-instructions">Example Code and Submission Instructions</h2>
-<p>Example code for the Humanize Behaviour v2 can be found in the <a href="../../redteam_core/miner/commits/humanize_behaviour_v2/src/bot/bot.py"><code>redteam_core/miner/commits/humanize_behaviour_v2/src/bot/bot.py</code></a> file.</p>
-<h3 id="technical-requirements">Technical Requirements</h3>
-<ul>
-<li>Python 3.12</li>
-<li>Ubuntu 24.04</li>
-<li>Docker container: selenium/standalone-chrome:4.28.1</li>
-</ul>
-<h3 id="core-requirements">Core Requirements</h3>
-<ol>
-<li>Use our template from <a href="../../redteam_core/miner/commits/humanize_behaviour_v2/src/bot/bot.py"><code>redteam_core/miner/commits/humanize_behaviour_v2/src/bot/bot.py</code></a></li>
-<li>Keep the <code>run_bot()</code> function signature unchanged</li>
-<li>Your bot must:</li>
-<li>Work with the provided Selenium driver</li>
-<li>Follow the click sequence specified in <code>config</code></li>
-<li>Input text into designated fields</li>
-<li>Submit the form without errors</li>
-</ol>
-<h3 id="key-guidelines">Key Guidelines</h3>
-<ul>
-<li><strong>Driver Usage</strong>: Stick to the provided Selenium driver to ensure proper evaluation</li>
-<li><strong>Action Sequence</strong>: Follow the provided <code>config</code> order. Clicking it at the start or in the middle will prematurely submit data and result in a zero score due to invalid action flow.</li>
-<li><strong>Click Behavior</strong>:<ul>
-<li>Only click at specified locations</li>
-<li>Additional clicks for input fields and submit buttons are allowed</li>
-<li>Wrong click order will result in form submission failure.</li>
-</ul>
-</li>
-<li><strong>Text Input</strong>:<ul>
-<li>Locate fields by their <code>id</code></li>
-<li>Use text from the <code>config</code></li>
-<li>Maintain the specified input order</li>
-</ul>
-</li>
-<li><strong>Technical Setup</strong>:<ul>
-<li>Enable headless mode</li>
-<li>List dependencies in <a href="../../redteam_core/miner/commits/humanize_behaviour_v2/src/bot/requirements.txt"><code>requirements.txt</code></a>. See the limitations for dependencies</li>
-<li>Use amd64 architecture (ARM64 at your own risk)</li>
-<li>If your script requires system-level dependencies, add them to  <a href="../../redteam_core/miner/commits/humanize_behaviour_v2/src/bot/"><code>system_deps.txt</code></a>.</li>
-</ul>
-</li>
-<li><strong>Limitations</strong><ul>
-<li>Your script must not exceed 2,000 lines. If it does, it will be considered invalid, and you will receive a score of zero.</li>
-<li>Your dependencies must be older than January 1, 2025. Any package released on or after this date will not be accepted, and your script will not be processed.</li>
-</ul>
-</li>
-</ul>
-<h3 id="evaluation-criteria">Evaluation Criteria</h3>
-<p>Your bot will be scored on these human-like behaviors:</p>
-<ul>
-<li>Mouse Movement Velocity Variation</li>
-<li>Mouse Movement Speed</li>
-<li>Mouse Movement Velocity Profiles between clicks</li>
-<li>Mouse Movement Granularity (average pixel per movement)</li>
-<li>Mouse Movement Count within the session</li>
-<li>Mouse Movement Trajectory Linearity</li>
-<li>Keypress Behavior Pattern (typing speed and variations)</li>
-</ul>
-<h3 id="plagiarism-check">Plagiarism Check</h3>
-<p>We maintain strict originality standards:</p>
-<ul>
-<li>All submissions are compared against other miners' script</li>
-<li>100% similarity = zero score</li>
-<li>Similarity above 60% will result in proportional score penalties based on the <strong>detected similarity percentage</strong>.</li>
-<li>Note: Comparisons are only made against other miners’ submissions, not your own previous Humanize Behaviour v2 entries.</li>
-</ul>
-<h2 id="submission-guide">Submission Guide</h2>
-<p>Follow 1~6 steps to submit your script.</p>
-<ol>
-<li><strong>Navigate to the Humanize Behaviour v2 Commit Directory</strong></li>
-</ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>redteam_core/miner/commits/humanize_behaviour_v2
+<h1 id="text-detection-submission-guide-deprecated">Text Detection Submission Guide (Deprecated)</h1>
+<p>Example code for the Text Detection Submission can be found in the <code>redteam_core/miner/commits/text_detection</code> directory. Follow the steps below to build, tag, push, and update the active commit:</p>
+<h2 id="1-navigate-to-the-text-detection-commit-directory">1. Navigate to the Text Detection Commit Directory</h2>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>redteam_core/miner/commits/text_detection
 </span></code></pre></div>
-<ol>
-<li><strong>Build the Docker Image</strong></li>
-</ol>
-<p>To build the Docker image for the Humanize Behaviour v2 submission, run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>my_hub/humanize_behaviour-miner:0.0.1<span class="w"> </span>.
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># For MacOS (Apple Silicon) to build AMD64:</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nv">DOCKER_BUILDKIT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>-t<span class="w"> </span>myhub/humanize_behaviour-miner:0.0.1<span class="w"> </span>.
+<h2 id="2-build-the-docker-image">2. Build the Docker Image</h2>
+<p>To build the Docker image for the text detection submission, run:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>text_detection_submission:0.0.1<span class="w"> </span>.
 </span></code></pre></div>
-<ol>
-<li><strong>Log in to Docker</strong></li>
-</ol>
+<h2 id="3-tag-the-docker-image">3. Tag the Docker Image</h2>
+<p>After building the image, tag it with your repository name:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>text_detection_submission:0.0.1<span class="w"> </span>myhub/text_detection_submission:0.0.1
+</span></code></pre></div>
+<h2 id="4-log-in-to-docker">4. Log in to Docker</h2>
 <p>Log in to your Docker Hub account using the following command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>login
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>login
 </span></code></pre></div>
 <p>Enter your Docker Hub credentials when prompted.</p>
-<ol>
-<li><strong>Push the Docker Image</strong></li>
-</ol>
+<h2 id="5-push-the-docker-image">5. Push the Docker Image</h2>
 <p>Push the tagged image to your Docker Hub repository:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>push<span class="w"> </span>myhub/humanize_behaviour:0.0.1
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>push<span class="w"> </span>myhub/text_detection_submission:0.0.1
 </span></code></pre></div>
-<ol>
-<li><strong>Retrieve the SHA256 Digest</strong></li>
-</ol>
+<h2 id="6-retrieve-the-sha256-digest">6. Retrieve the SHA256 Digest</h2>
 <p>After pushing the image, retrieve the digest by running:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>inspect<span class="w"> </span>--format<span class="o">=</span><span class="s1">&#39;{{index .RepoDigests 0}}&#39;</span><span class="w"> </span>myhub/humanize_behaviour:0.0.1
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>inspect<span class="w"> </span>--format<span class="o">=</span><span class="s1">&#39;{{index .RepoDigests 0}}&#39;</span><span class="w"> </span>myhub/text_detection_submission:0.0.1
 </span></code></pre></div>
-<ol>
-<li><strong>Update active_commit.yaml</strong></li>
-</ol>
+<h2 id="7-update-active_commityaml">7. Update active_commit.yaml</h2>
 <p>Finally, go to the <code>neurons/miner/active_commit.yaml</code> file and update it with the new image tag:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">humanize_behaviour---myhub/humanize_behaviour@&lt;sha256:digest&gt;</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text_detection---myhub/text_detection_submission@&lt;sha256:digest&gt;</span>
 </span></code></pre></div>
-<hr />
-<h2 id="references">📑 References</h2>
-<ul>
-<li>Docker - <a href="https://docs.docker.com">https://docs.docker.com</a></li>
-</ul>
 
 
 
@@ -1282,7 +1200,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../humanize_behaviour_v1/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Humanize Behaviour v1 Submission Guide (Active after Feb 12st 2025 14:00 UTC)">
+          <a href="../response_quality_ranker_v2/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Response Quality Ranker V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1292,20 +1210,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Humanize Behaviour v1 Submission Guide (Active after Feb 12st 2025 14:00 UTC)
+                Response Quality Ranker V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../response_quality_adversarial_v2/" class="md-footer__link md-footer__link--next" aria-label="Next: Response quality adversarial v2">
+          <a href="../../../diagrams/humanize_behaviour/flw.general/" class="md-footer__link md-footer__link--next" aria-label="Next: Humanize behavior challenge (General)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Response quality adversarial v2
+                Humanize behavior challenge (General)
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1339,10 +1257,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>

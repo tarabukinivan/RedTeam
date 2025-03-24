@@ -10,26 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://RedTeamSubnet.github.io/RedTeam/template/text_detection/">
+        <link rel="canonical" href="https://docs.theredteam.io/2.miner/">
       
       
-        <link rel="prev" href="../response_quality_ranker_v2/">
+        <link rel="prev" href="../1.validator/">
       
       
+        <link rel="next" href="../3.submission_guide/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
     
     
       
-        <title>Text detection - RedTeam Subnet</title>
+        <title>Miner Setup - RedTeam Subnet</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#text-detection-submission-guide-deprecated" class="md-skip">
+        <a href="#miner-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="RedTeam Subnet" class="md-header__button md-logo" aria-label="RedTeam Subnet" data-md-component="logo">
+    <a href=".." title="RedTeam Subnet" class="md-header__button md-logo" aria-label="RedTeam Subnet" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Text detection
+              Miner Setup
             
           </span>
         </div>
@@ -229,7 +231,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         
   
     
@@ -246,12 +248,12 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../challenge_submission_guide/" class="md-tabs__link">
+      <a href="../1.validator/" class="md-tabs__link">
         
   
     
   
-  Submission Guide
+  Validator Setup
 
       </a>
     </li>
@@ -261,26 +263,11 @@
         
   
   
-  
-    <li class="md-tabs__item">
-      <a href="../../docker/" class="md-tabs__link">
-        
-  
     
   
-  Docker Guide
-
-      </a>
-    </li>
   
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../miner/" class="md-tabs__link">
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
     
@@ -297,12 +284,12 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../validator/" class="md-tabs__link">
+      <a href="../3.submission_guide/" class="md-tabs__link">
         
   
     
   
-  Validator Setup
+  Submission Guide
 
       </a>
     </li>
@@ -314,15 +301,52 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../validator_custom/" class="md-tabs__link">
+      <a href="../4.validator_custom/" class="md-tabs__link">
         
   
     
   
-  Validator custom
+  Validator Custom
 
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../5.docker/" class="md-tabs__link">
+        
+  
+    
+  
+  Docker Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../challenge_templates/humanize_behaviour_v2/" class="md-tabs__link">
+          
+  
+    
+  
+  Challenge templates
+
+        </a>
+      </li>
+    
   
 
       
@@ -339,7 +363,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../diagrams/humanize_behaviour/flw.general/" class="md-tabs__link">
+        <a href="../diagrams/humanize_behaviour/flw.general/" class="md-tabs__link">
           
   
     
@@ -355,28 +379,6 @@
   
 
       
-        
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../humanize_behaviour_v1/" class="md-tabs__link">
-          
-  
-    
-  
-  Template
-
-        </a>
-      </li>
-    
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -388,7 +390,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -399,7 +403,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="RedTeam Subnet" class="md-nav__button md-logo" aria-label="RedTeam Subnet" data-md-component="logo">
+    <a href=".." title="RedTeam Subnet" class="md-nav__button md-logo" aria-label="RedTeam Subnet" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -429,7 +433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -450,7 +454,108 @@
   
   
     <li class="md-nav__item">
-      <a href="../../challenge_submission_guide/" class="md-nav__link">
+      <a href="../1.validator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validator Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Miner Setup
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Miner Setup
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-system-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimum System Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Instructions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.submission_guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -471,7 +576,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../../docker/" class="md-nav__link">
+      <a href="../4.validator_custom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validator Custom
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5.docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -491,12 +617,57 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Challenge templates
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Challenge templates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../miner/" class="md-nav__link">
+      <a href="../challenge_templates/humanize_behaviour_v2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Miner Setup
+    Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)
     
   </span>
   
@@ -505,19 +676,69 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
       
       
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deprecated
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Deprecated
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../validator/" class="md-nav__link">
+      <a href="../challenge_templates/deprecated/humanize_behaviour_v1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Validator Setup
+    Humanize Behaviour v1 Submission Guide (Active after Feb 12st 2025 14:00 UTC)
     
   </span>
   
@@ -526,24 +747,85 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../validator_custom/" class="md-nav__link">
+      <a href="../challenge_templates/deprecated/response_quality_adversarial_v2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Validator custom
+    Response Quality Adversarial V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge_templates/deprecated/response_quality_ranker_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Quality Ranker V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge_templates/deprecated/text_detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text Detection Submission Guide (Deprecated)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -569,10 +851,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -584,8 +866,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Diagrams
           </label>
@@ -614,10 +896,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
         
           
-          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -629,8 +911,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
             <span class="md-nav__icon md-icon"></span>
             Humanize behaviour
           </label>
@@ -643,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../diagrams/humanize_behaviour/flw.general/" class="md-nav__link">
+      <a href="../diagrams/humanize_behaviour/flw.general/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -665,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../diagrams/humanize_behaviour/flw.small/" class="md-nav__link">
+      <a href="../diagrams/humanize_behaviour/flw.small/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -695,294 +977,6 @@
   
 
     
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-        
-        
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
-            
-  
-  <span class="md-ellipsis">
-    Template
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            Template
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../humanize_behaviour_v1/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Humanize Behaviour v1 Submission Guide (Active after Feb 12st 2025 14:00 UTC)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../humanize_behaviour_v2/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../response_quality_adversarial_v2/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response quality adversarial v2
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../response_quality_ranker_v2/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response Quality Ranker V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Text detection
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Text detection
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#text-detection-submission-guide-deprecated" class="md-nav__link">
-    <span class="md-ellipsis">
-      Text Detection Submission Guide (Deprecated)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Text Detection Submission Guide (Deprecated)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-navigate-to-the-text-detection-commit-directory" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Navigate to the Text Detection Commit Directory
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-build-the-docker-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Build the Docker Image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-tag-the-docker-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Tag the Docker Image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-log-in-to-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Log in to Docker
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-push-the-docker-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Push the Docker Image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-retrieve-the-sha256-digest" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Retrieve the SHA256 Digest
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-update-active_commityaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Update active_commit.yaml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -990,6 +984,8 @@
               </div>
             
             
+              
+                
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
@@ -1000,6 +996,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1008,80 +1006,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#text-detection-submission-guide-deprecated" class="md-nav__link">
+  <a href="#minimum-system-requirements" class="md-nav__link">
     <span class="md-ellipsis">
-      Text Detection Submission Guide (Deprecated)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Text Detection Submission Guide (Deprecated)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-navigate-to-the-text-detection-commit-directory" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Navigate to the Text Detection Commit Directory
+      Minimum System Requirements
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-build-the-docker-image" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#setup-instructions" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Build the Docker Image
+      Setup Instructions
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-tag-the-docker-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Tag the Docker Image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-log-in-to-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Log in to Docker
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-push-the-docker-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Push the Docker Image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-retrieve-the-sha256-digest" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Retrieve the SHA256 Digest
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-update-active_commityaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Update active_commit.yaml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1098,44 +1036,110 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
   
 
 
-  <h1>Text detection</h1>
-
-<h2 id="text-detection-submission-guide-deprecated">Text Detection Submission Guide (Deprecated)</h2>
-<p>Example code for the Text Detection Submission can be found in the <code>redteam_core/miner/commits/text_detection</code> directory. Follow the steps below to build, tag, push, and update the active commit:</p>
-<h3 id="1-navigate-to-the-text-detection-commit-directory">1. Navigate to the Text Detection Commit Directory</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>redteam_core/miner/commits/text_detection
+<h1 id="miner-setup">Miner Setup</h1>
+<h2 id="minimum-system-requirements">Minimum System Requirements</h2>
+<p>Below is the minimum system requirements for running a miner node on the RedTeam Subnet:</p>
+<ul>
+<li>8-GB RAM</li>
+<li>2-Cores CPU</li>
+<li>Tested on Ubuntu 22.04</li>
+</ul>
+<p>But you may need more resources for engineering challenges.</p>
+<h2 id="setup-instructions">Setup Instructions</h2>
+<p>To set up a miner node on the RedTeam Subnet, follow these steps:</p>
+<ol>
+<li>
+<p>Prerequisites</p>
+<ul>
+<li>Install <strong>Python (&gt;= v3.10)</strong> and <strong>pip (&gt;= 23)</strong>:<ul>
+<li><strong>[RECOMMENDED]  <a href="https://www.anaconda.com/docs/getting-started/miniconda/install">Miniconda (v3)</a></strong></li>
+<li><em>[arm64/aarch64]  <a href="https://github.com/conda-forge/miniforge">Miniforge (v3)</a></em></li>
+<li><em>[Python virutal environment]  <a href="https://docs.python.org/3/library/venv.html">venv</a></em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Install the latest version of the RedTeam Subnet repository.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/RedTeamSubnet/RedTeam<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>RedTeam
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </span></code></pre></div>
-<h3 id="2-build-the-docker-image">2. Build the Docker Image</h3>
-<p>To build the Docker image for the text detection submission, run:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>text_detection_submission:0.0.1<span class="w"> </span>.
-</span></code></pre></div></p>
-<h3 id="3-tag-the-docker-image">3. Tag the Docker Image</h3>
-<p>After building the image, tag it with your repository name:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>text_detection_submission:0.0.1<span class="w"> </span>myhub/text_detection_submission:0.0.1
-</span></code></pre></div></p>
-<h3 id="4-log-in-to-docker">4. Log in to Docker</h3>
-<p>Log in to your Docker Hub account using the following command:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>login
+</li>
+<li>
+<p>Explore challenges at <code>redteam_core/challenge_pool/</code>, build your solution, dockerize it, and push it to Docker Hub. You can view the detailed guide <a href="../3.submission_guide/">here</a>. We have some limitations on your solution:</p>
+<ul>
+<li>The solution must be a Python script.</li>
+<li>The solution won't be able to access the internet.</li>
+<li>Resource limit: see <a href="https://github.com/RedTeamSubnet/RedTeam/blob/main/redteam_core/challenge_pool/active_challenges.yaml">Active Challenge Config</a></li>
+</ul>
+</li>
+<li>
+<p>Specify docker submissions for challenges at <code>neurons/miner/active_commit.yaml</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">challenge_name_1---docker_hub_id_1@&lt;sha256:digest&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">challenge_name_2---docker_hub_id_2&lt;sha256:digest&gt;</span>
 </span></code></pre></div>
-Enter your Docker Hub credentials when prompted.</p>
-<h3 id="5-push-the-docker-image">5. Push the Docker Image</h3>
-<p>Push the tagged image to your Docker Hub repository:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>push<span class="w"> </span>myhub/text_detection_submission:0.0.1
-</span></code></pre></div></p>
-<h3 id="6-retrieve-the-sha256-digest">6. Retrieve the SHA256 Digest</h3>
-<p>After pushing the image, retrieve the digest by running:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>inspect<span class="w"> </span>--format<span class="o">=</span><span class="s1">&#39;{{index .RepoDigests 0}}&#39;</span><span class="w"> </span>myhub/text_detection_submission:0.0.1
-</span></code></pre></div></p>
-<h3 id="7-update-active_commityaml">7. Update active_commit.yaml</h3>
-<p>Finally, go to the <code>neurons/miner/active_commit.yaml</code> file and update it with the new image tag:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text_detection---myhub/text_detection_submission@&lt;sha256:digest&gt;</span>
+</li>
+<li>
+<p>Install PM2 Process Manager</p>
+<ul>
+<li>NVM (Node Version Manager): <a href="https://github.com/nvm-sh/nvm">https://github.com/nvm-sh/nvm</a></li>
+<li>Node.js and npm: <a href="https://nodejs.org/en/download">https://nodejs.org/en/download</a></li>
+<li>PM2 (Process Manager): <a href="https://pm2.io/docs/runtime/guide/installation">https://pm2.io/docs/runtime/guide/installation</a></li>
+</ul>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Install NVM (Node Version Manager):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>curl<span class="w"> </span>-o-<span class="w"> </span>https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Activate NVM:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Check NVM version:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>nvm<span class="w"> </span>--version
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># Install Node.js and npm:</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>nvm<span class="w"> </span>install<span class="w"> </span>--latest-npm<span class="w"> </span>--alias<span class="o">=</span>default<span class="w"> </span><span class="o">[</span>NODE_VERSION<span class="o">]</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># For example:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>nvm<span class="w"> </span>install<span class="w"> </span>--latest-npm<span class="w"> </span>--alias<span class="o">=</span>default<span class="w"> </span><span class="m">22</span>.14.0
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># Set the default Node.js:</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>nvm<span class="w"> </span>use<span class="w"> </span>default
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="c1"># Check Node.js and npm versions:</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>node<span class="w"> </span>--version
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>npm<span class="w"> </span>--version
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="c1"># Install PM2 globally with logrotate:</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>pm2
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>pm2<span class="w"> </span>install<span class="w"> </span>pm2-logrotate
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="c1"># Check PM2 version:</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>pm2<span class="w"> </span>--version
 </span></code></pre></div>
+</li>
+<li>
+<p>Start the miner node:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pm2<span class="w"> </span>start<span class="w"> </span>python<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;miner_snxxx&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>--<span class="w"> </span>-m<span class="w"> </span>neurons.miner.miner<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>--netuid<span class="w"> </span>xxx<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span>--wallet.name<span class="w"> </span><span class="s2">&quot;wallet_name&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>--wallet.hotkey<span class="w"> </span><span class="s2">&quot;wallet_hotkey&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span>--axon.port<span class="w"> </span><span class="s2">&quot;axon_port&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span>--subtensor.network<span class="w"> </span>&lt;network&gt;<span class="w"> </span><span class="c1"># default is finney</span>
+</span></code></pre></div>
+</li>
+</ol>
+<p>Optional flags:</p>
+<ul>
+<li><code>--logging.trace</code> - Enable trace logging</li>
+<li><code>--logging.debug</code> - Enable debug logging</li>
+</ul>
 
 
 
@@ -1143,8 +1147,13 @@ Enter your Docker Hub credentials when prompted.</p>
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -1168,10 +1177,12 @@ Enter your Docker Hub credentials when prompted.</p>
   
     
       
+        
+      
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../response_quality_ranker_v2/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Response Quality Ranker V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)">
+          <a href="../1.validator/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Validator Setup">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1181,11 +1192,27 @@ Enter your Docker Hub credentials when prompted.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Response Quality Ranker V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)
+                Validator Setup
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="../3.submission_guide/" class="md-footer__link md-footer__link--next" aria-label="Next: Submission Guide">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Submission Guide
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
@@ -1212,10 +1239,10 @@ Enter your Docker Hub credentials when prompted.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>

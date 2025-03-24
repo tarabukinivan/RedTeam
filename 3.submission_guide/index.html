@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://RedTeamSubnet.github.io/RedTeam/validator/">
+        <link rel="canonical" href="https://docs.theredteam.io/3.submission_guide/">
       
       
-        <link rel="prev" href="../miner/">
+        <link rel="prev" href="../2.miner/">
       
       
-        <link rel="next" href="../validator_custom/">
+        <link rel="next" href="../4.validator_custom/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Validator Setup - RedTeam Subnet</title>
+        <title>Submission Guide - RedTeam Subnet</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#validator-setup" class="md-skip">
+        <a href="#submission-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Validator Setup
+              Submission Guide
             
           </span>
         </div>
@@ -248,12 +248,12 @@
   
   
     <li class="md-tabs__item">
-      <a href="../challenge_submission_guide/" class="md-tabs__link">
+      <a href="../1.validator/" class="md-tabs__link">
         
   
     
   
-  Submission Guide
+  Validator Setup
 
       </a>
     </li>
@@ -265,24 +265,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../docker/" class="md-tabs__link">
-        
-  
-    
-  
-  Docker Guide
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../miner/" class="md-tabs__link">
+      <a href="../2.miner/" class="md-tabs__link">
         
   
     
@@ -306,7 +289,7 @@
   
     
   
-  Validator Setup
+  Submission Guide
 
       </a>
     </li>
@@ -318,15 +301,52 @@
   
   
     <li class="md-tabs__item">
-      <a href="../validator_custom/" class="md-tabs__link">
+      <a href="../4.validator_custom/" class="md-tabs__link">
         
   
     
   
-  Validator custom
+  Validator Custom
 
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../5.docker/" class="md-tabs__link">
+        
+  
+    
+  
+  Docker Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../challenge_templates/humanize_behaviour_v2/" class="md-tabs__link">
+          
+  
+    
+  
+  Challenge templates
+
+        </a>
+      </li>
+    
   
 
       
@@ -359,26 +379,6 @@
   
 
       
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../template/humanize_behaviour_v1/" class="md-tabs__link">
-          
-  
-    
-  
-  Template
-
-        </a>
-      </li>
-    
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -390,7 +390,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -452,11 +454,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../challenge_submission_guide/" class="md-nav__link">
+      <a href="../1.validator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Submission Guide
+    Validator Setup
     
   </span>
   
@@ -473,28 +475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Docker Guide
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../miner/" class="md-nav__link">
+      <a href="../2.miner/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -528,7 +509,7 @@
           
   
   <span class="md-ellipsis">
-    Validator Setup
+    Submission Guide
     
   </span>
   
@@ -540,7 +521,7 @@
         
   
   <span class="md-ellipsis">
-    Validator Setup
+    Submission Guide
     
   </span>
   
@@ -563,20 +544,77 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#minimum-system-requirements" class="md-nav__link">
+  <a href="#step-1-create-an-apppy" class="md-nav__link">
     <span class="md-ellipsis">
-      Minimum System Requirements
+      Step 1: Create an app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create an app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-health-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. /health Route
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-instructions" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-solve-route" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup Instructions
+      2. /solve Route
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-package-your-submission-using-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Package Your Submission Using Docker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Package Your Submission Using Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-a-requirementstxt-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create a requirements.txt file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-a-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create a Dockerfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-build-and-test-your-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Build and Test Your Docker Image
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -595,16 +633,256 @@
   
   
     <li class="md-nav__item">
-      <a href="../validator_custom/" class="md-nav__link">
+      <a href="../4.validator_custom/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Validator custom
+    Validator Custom
     
   </span>
   
 
       </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5.docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Challenge templates
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Challenge templates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge_templates/humanize_behaviour_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deprecated
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Deprecated
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge_templates/deprecated/humanize_behaviour_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Humanize Behaviour v1 Submission Guide (Active after Feb 12st 2025 14:00 UTC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge_templates/deprecated/response_quality_adversarial_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Quality Adversarial V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge_templates/deprecated/response_quality_ranker_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Quality Ranker V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge_templates/deprecated/text_detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text Detection Submission Guide (Deprecated)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -630,10 +908,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -645,8 +923,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Diagrams
           </label>
@@ -675,10 +953,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
         
           
-          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -690,8 +968,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
             <span class="md-nav__icon md-icon"></span>
             Humanize behaviour
           </label>
@@ -756,174 +1034,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Template
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            Template
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../template/humanize_behaviour_v1/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Humanize Behaviour v1 Submission Guide (Active after Feb 12st 2025 14:00 UTC)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../template/humanize_behaviour_v2/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Humanize Behaviour v2 Submission Guide (Active after March 18th 2025 14:00 UTC)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../template/response_quality_adversarial_v2/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response quality adversarial v2
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../template/response_quality_ranker_v2/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response Quality Ranker V2 Submission Guide (Active after Jan 15th 2025 14:00 UTC)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../template/text_detection/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Text detection
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -931,6 +1041,8 @@
               </div>
             
             
+              
+                
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
@@ -951,20 +1063,77 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#minimum-system-requirements" class="md-nav__link">
+  <a href="#step-1-create-an-apppy" class="md-nav__link">
     <span class="md-ellipsis">
-      Minimum System Requirements
+      Step 1: Create an app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create an app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-health-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. /health Route
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-instructions" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-solve-route" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup Instructions
+      2. /solve Route
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-package-your-submission-using-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Package Your Submission Using Docker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Package Your Submission Using Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-a-requirementstxt-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create a requirements.txt file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-a-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create a Dockerfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-build-and-test-your-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Build and Test Your Docker Image
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -981,134 +1150,72 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
   
 
 
-<h1 id="validator-setup">Validator Setup</h1>
-<h2 id="minimum-system-requirements">Minimum System Requirements</h2>
-<p>Below is the minimum system requirements for running a validator node on the RedTeam Subnet:
-- Bare Metal Server
-- GPU with 24-GB VRAM
-- Ubuntu 20.04 LTS
-- NVIDIA Driver
-- 32-GB RAM
-- 512-GB Storage
-- 8-Core CPU</p>
-<h2 id="setup-instructions">Setup Instructions</h2>
-<p>To set up a validator node on the RedTeam Subnet, follow these steps:</p>
-<ol>
-<li>
-<p>Prerequisites</p>
-</li>
-<li>
-<p>Install <strong>Python (&gt;= v3.10)</strong> and <strong>pip (&gt;= 23)</strong>:</p>
+<h1 id="submission-guide">Submission Guide</h1>
+<h2 id="step-1-create-an-apppy">Step 1: Create an <code>app.py</code></h2>
+<p>Ensure your API server includes the following two routes:</p>
+<h3 id="1-health-route">1. <code>/health</code> Route</h3>
 <ul>
-<li><strong>[RECOMMENDED][Miniconda (v3)](https://www.anaconda.com/docs/getting-started/miniconda/install)</strong></li>
-<li><em>[arm64/aarch64][Miniforge (v3)](https://github.com/conda-forge/miniforge)</em></li>
-<li><em>[Python virutal environment][venv](https://docs.python.org/3/library/venv.html)</em></li>
+<li><strong>Method</strong>: <code>GET</code></li>
+<li>
+<p><strong>Response</strong>: Return a JSON object with the following structure:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
 </ul>
-</li>
-<li>Install <strong><a href="https://graphviz.org/download">graphviz</a></strong></li>
-<li>
-<p>Install <strong><a href="https://pygraphviz.github.io/documentation/stable/install.html">pygraphviz</a></strong></p>
-</li>
-<li>
-<p>Install the latest version of the RedTeam Subnet repository.
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Clone the repository</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/RedTeamSubnet/RedTeam<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>RedTeam
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Create and activate a virtual environment</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Install the dependencies</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-</span></code></pre></div></p>
-</li>
-<li>
-<p>Install Docker Engine (guide from official Docker documentation):
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">for</span><span class="w"> </span>pkg<span class="w"> </span><span class="k">in</span><span class="w"> </span>docker.io<span class="w"> </span>docker-doc<span class="w"> </span>docker-compose<span class="w"> </span>docker-compose-v2<span class="w"> </span>podman-docker<span class="w"> </span>containerd<span class="w"> </span>runc<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span><span class="nv">$pkg</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ca-certificates<span class="w"> </span>curl
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>-d<span class="w"> </span>/etc/apt/keyrings
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>sudo<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/docker.asc
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>a+r<span class="w"> </span>/etc/apt/keyrings/docker.asc
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s2">  </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERSION_CODENAME</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2"> stable&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
-</span></code></pre></div></p>
-</li>
-</ol>
-<p>To verify the installation, run:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>hello-world
-</span></code></pre></div></p>
-<ol>
-<li>Install PM2 Process Manager
-Here is an example of how to install PM2 on Ubuntu 20.04 LTS:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Install Node.js and npm</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://deb.nodesource.com/setup_20.x<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash<span class="w"> </span>-
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nodejs
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Install PM2 globally</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>sudo<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>pm2
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Verify PM2 installation</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>pm2<span class="w"> </span>--version
-</span></code></pre></div></li>
-</ol>
-<p>For other platforms, please refer to the <a href="https://pm2.io/docs/runtime/guide/installation/">PM2 Installation Guide</a>.</p>
-<ol>
-<li>
-<p>Login to Hugging Face Hub
-Authenticate your Hugging Face Hub account. Run the following command to log in:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>huggingface-cli<span class="w"> </span>login
+<h3 id="2-solve-route">2. <code>/solve</code> Route</h3>
+<ul>
+<li><strong>Method</strong>: <code>POST</code></li>
+<li><strong>Input</strong>: Receives a <code>MinerInput</code> object. This object represents the challenge sent by the validator.</li>
+<li><strong>Output</strong>: Returns a <code>MinerOutput</code> object. This object contains your response to the challenge.</li>
+</ul>
+<p>Both <code>MinerInput</code> and <code>MinerOutput</code> are defined in:
+<code>readteam_core/challenge_pool/&lt;challenge_name&gt;/data_types.py</code></p>
+<h2 id="step-2-package-your-submission-using-docker">Step 2: Package Your Submission Using Docker</h2>
+<p>To package your submission using Docker, follow these steps:</p>
+<h3 id="1-create-a-requirementstxt-file">1. Create a <code>requirements.txt</code> file</h3>
+<p>Make sure to include a <code>requirements.txt</code> file in the root directory with all necessary dependencies for your project. For example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>fastapi
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>uvicorn
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>transformers
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>accelerate
 </span></code></pre></div>
-You will be prompted to enter your Hugging Face access token. Visit <a href="https://huggingface.co/settings/tokens">Hugging Face Access Tokens</a> to generate one if you don't have it already.</p>
-</li>
-<li>
-<p>Custom Setup for Specific Challenges
-For setup instructions related to specific challenges, please refer to the <a href="../validator_custom/">Validator Custom Setup</a>.</p>
-</li>
-<li>
-<p>Start the validator node:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Activate the virtual environment if not already activated</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Start the validator process</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>pm2<span class="w"> </span>start<span class="w"> </span>python<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;validator_snxxx&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>--<span class="w"> </span>-m<span class="w"> </span>neurons.validator.validator<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>--netuid<span class="w"> </span>xxx<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>--wallet.name<span class="w"> </span><span class="s2">&quot;wallet_name&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>--wallet.hotkey<span class="w"> </span><span class="s2">&quot;wallet_hotkey&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>--subtensor.network<span class="w"> </span>&lt;network&gt;<span class="w"> </span><span class="se">\ </span><span class="c1"># default is finney</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>--validator.cache_dir<span class="w"> </span><span class="s2">&quot;./.cache/&quot;</span><span class="w"> </span><span class="se">\ </span><span class="c1"># Your local cache dir for miners commits.</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>--validator.hf_repo_id<span class="w"> </span><span class="s2">&quot;my_username/my_repo&quot;</span><span class="w"> </span><span class="se">\ </span><span class="c1"># Your HF repo ID for storing miners&#39; commits. You need to create your own repo; recommend creating a new HF account</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>--validator.use_centralized_scoring<span class="w"> </span><span class="se">\ </span><span class="c1"># Optional: Recommended for high VTRUST, opt-in to get scores of challenges from a centralized server</span>
+<p>You can generate a <code>requirements.txt</code> file using <code>pip freeze &gt; requirements.txt</code> if you have a virtual environment set up.</p>
+<h3 id="2-create-a-dockerfile">2. Create a <code>Dockerfile</code></h3>
+<p>Create a <code>Dockerfile</code> in the root directory of your project to define the container image. Below is an example template for the <code>Dockerfile</code>:</p>
+<div class="language-Dockerfile highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c"># Use a base image</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.10-slim</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c"># Set the working directory in the container</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c"># Copy the requirements file into the container</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c"># Install the dependencies</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c"># Copy all necessary files into the container</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c"># Expose the port the app runs on (must be 10002)</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">10002</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="c"># Run the app using the command (adjust accordingly if using Flask or FastAPI)</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;10002&quot;</span><span class="p">]</span>
 </span></code></pre></div>
-Optional flags:</p>
-</li>
-<li><code>--logging.trace</code> - Enable trace logging</li>
-<li>
-<p><code>--logging.debug</code> - Enable debug logging</p>
-</li>
-<li>
-<p>(Optional but Recommended) Start the Auto-Update Script
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Activate the virtual environment if not already activated</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Start auto-updater</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>pm2<span class="w"> </span>start<span class="w"> </span>python<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;validator_autoupdate&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span>--<span class="w"> </span>-m<span class="w"> </span>scripts.validator_auto_update<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span>--<span class="w"> </span>--process-name<span class="w"> </span><span class="s2">&quot;validator_snxxx&quot;</span>
-</span></code></pre></div></p>
-</li>
-</ol>
+<h3 id="3-build-and-test-your-docker-image">3. Build and Test Your Docker Image</h3>
+<p>After creating the <code>Dockerfile</code> and <code>requirements.txt</code>, you can build, tag your Docker image and push it to Docker Hub. Refer to the documentation for <a href="../5.docker/">Docker</a>.</p>
+<p>You can view the tutorial for text detection submission <a href="../challenge_templates/deprecated/text_detection/">here</a>.</p>
 
 
 
@@ -1116,8 +1223,13 @@ Optional flags:</p>
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -1141,10 +1253,12 @@ Optional flags:</p>
   
     
       
+        
+      
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../miner/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Miner Setup">
+          <a href="../2.miner/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Miner Setup">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1161,13 +1275,13 @@ Optional flags:</p>
         
         
           
-          <a href="../validator_custom/" class="md-footer__link md-footer__link--next" aria-label="Next: Validator custom">
+          <a href="../4.validator_custom/" class="md-footer__link md-footer__link--next" aria-label="Next: Validator Custom">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Validator custom
+                Validator Custom
               </div>
             </div>
             <div class="md-footer__button md-icon">
